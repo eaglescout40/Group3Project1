@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+
+div {
+    border: 1px solid black;
+}
+
+#image {
+    height: 300px;
+    width: 70%;
+    background-color: blue;
+    float: left;
+}
+
+#img-text {
+    width: 30%;
+    height: 300px;
+    background-color: red;
+    float: left;
+}
+
