@@ -1,0 +1,1005 @@
+
+<!--This code is from the PETFINDER.COMpet search.  This is intended to be something to use to model our search code after-->
+<!--NOT to be used as is-->
+<html>
+<head>
+<script type="text/javascript" src="//nexus.ensighten.com/purina/Bootstrap.js"></script>
+<title>Our Pet List - Powered by Petfinder.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link type="text/css" href="styles.css" rel="stylesheet"/>
+
+</head>
+   
+<body style="background:#ffffff">
+<style type="text/css">
+.hide {
+    display: none;
+}
+
+
+</style>
+           
+<style type="text/css">
+<!--
+
+  a.pflink 	        { color: #333333}
+a.pflink:link		{ color: #333333; text-decoration: underline;}
+a.pflink:visited	{ color: #333333; text-decoration: underline;}
+a.pflink:active	{ color: #333333; text-decoration: underline;}
+a.pflink:hover	{ color: #333333; text-decoration:none;}
+tr.pfrow1 td{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #333333; padding-top: 2px; padding-right: 2px; padding-left: 2px; padding-bottom: 2px ; border-color: black black #FFFFFF; border-style: none; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px ; background-color: #F1EFE2}
+tr.pfrow2 td{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #333333; padding-top: 2px; padding-right: 2px; padding-left: 2px; padding-bottom: 2px ; border-color: black black #FFFFFF; border-style: none; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px ; background-color: #FFFFFF}
+.header {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #333333; background-color: #ACA899; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px}
+a.header  	        {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #333333; background-color: #ACA899; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px}
+a.header:link		{  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #333333; background-color: #ACA899; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px}
+a.header:visited	{  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #333333; background-color: #ACA899; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px}
+a.header:active	{  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #333333; background-color: #ACA899; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px}
+a.header:hover	{  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #FFFFFF; background-color: #ACA899; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; text-decoration:none;}
+.img {  border: 1px #514E42 solid}
+.content {  border: #ACA899; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+.topheader { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #333333; background-color: #F1EFE2; padding-top: 5px; padding-right: 2px; padding-bottom: 5px; padding-left: 2px }
+body, html {
+  scrollbar-face-color: #ACA899 ;
+  scrollbar-shadow-color: #F1EFE2 ;
+  scrollbar-highlight-color: #FFFFFF; ;
+  scrollbar-3dlight-color: #FFFFFF ;
+  scrollbar-darkshadow-color: #333333 ;
+  scrollbar-track-color: #F1EFE2 ;
+  scrollbar-arrow-color: #333333 ;
+}
+.formfield { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; color: #333333; background-color: #FFFFFF; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border: #333333}
+.miniform { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #333333; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px }
+
+  
+  
+
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" >
+
+<style>
+.isVisuallyHidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+</style>
+<p id="petlist_desc" class="isVisuallyHidden">Petfinder.com Pet Listing - Find your new best friend!</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td align="center" class="topheader" valign="middle">
+            Adoptable Pets
+        </td>
+    </tr>
+    <tr>
+        <td  align="center" class="topheader" valign="middle"><a href="//www.petfinder.com" target="_blank">
+            <img src="https://www.petfinder.com/common/images/fpm/poweredby_h.gif" width="245" height="16" vspace="2" border="0">
+            
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td  align="center" valign="middle" class="topheader">
+            <form autocomplete="off" name="filter" method="get" action="petlist.cgi">
+                <input value="" name="shelter" type="hidden">
+
+                <input value="" name="title" type="hidden">
+                <input value="" name="moreinfo" type="hidden">
+                <input value="1" name="style" type="hidden">
+                <input value="" name="sort" type="hidden">
+                <input value="" name="status" type="hidden">
+                <input value="" name="picsize" type="hidden">
+                <input value="" name="color1" type="hidden">
+                <input value="" name="color2" type="hidden">                   
+                <table cellspacing="5">
+                    <tr>
+                        <!--
+                        <td class="topheader" valign="bottom">
+                            Show me:
+                        </td>
+                        -->
+                        <td>
+                            <table cellpadding = "0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span class="miniform">Animal</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="animal" class="formfield">
+                                            <option value="">ALL</option>
+                                            <option value="BarnYard">BarnYard</option>
+                                            <option value="Bird">Bird</option>
+                                            <option value="Cat">Cat</option>
+                                            <option value="Dog">Dog</option>
+                                            <option value="Horse">Horse</option>
+                                            <option value="Rabbit">Rabbit</option>
+                                            <option value="Reptile">Reptile</option>
+                                            <option value="SmallFurry">Small&amp;Furry</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding = "0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span  class="miniform">Breed</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input name="breed" class="formfield" type="text" size="12">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding = "0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span  class="miniform">Age</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="age" class="formfield">
+                                            <option value="">ALL</option>
+                                            <option value="Baby">Baby</option>
+                                            <option value="Young">Young</option>
+                                            <option value="Adult">Adult</option>
+                                            <option value="Senior">Senior</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding = "0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span  class="miniform">Size</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="size" class="formfield">
+                                            <option value="">ALL</option>
+                                            <option value="S">Small</option>
+                                            <option value="M">Medium</option>
+                                            <option value="L">Large</option>
+                                            <option value="XL">X-Large</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        
+                        <td valign="bottom">
+                            <input width="15" align="bottom" src="https://www.petfinder.com/common/images/fpm/go_2.gif" type="image" height="15" border="0">
+                            
+                            
+                        </td>
+                    </tr>
+                </table>
+            </form>     
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td  align="center">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+                <tr bgcolor="#EAEAFF">
+                    <td class="header" ><a href="javascript: document.filter.sort.value='name'; document.filter.submit();" class="header">Name</a></td>
+                    
+                    <td class="header" ><a href="javascript: document.filter.sort.value='animal'; document.filter.submit();" class="header">Animal</a></td>
+                    <td class="header" ><a href="javascript: document.filter.sort.value='breed'; document.filter.submit();" class="header">Breed</a></td>
+                    <td class="header" ><a href="javascript: document.filter.sort.value='age'; document.filter.submit();" class="header">Age</a></td>
+                    <td class="header" ><a href="javascript: document.filter.sort.value='size'; document.filter.submit();" class="header">Size</a></td>
+                    <td class="header" >Photo</td>
+                </tr>
+                    
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/43420208" class="pflink" target="_blank">
+                            <span role='heading'>	 Atreyu</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Hound, Doberman Pinscher
+                                        </td>
+                                        <td>
+                                            Adult
+                                            </td>
+                                            <td>
+                                                Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/43420208" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/43420208/3/?bust=1545086338&width=130" class="img pets" border="0" alt="	 Atreyu's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/45198069" class="pflink" target="_blank">
+                            <span role='heading'>	Roman</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Labrador Retriever
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/45198069" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45198069/1/?bust=1562607805&width=130" class="img pets" border="0" alt="	Roman's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/35288966" class="pflink" target="_blank">
+                            <span role='heading'>!  1 Tito</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Miniature Pinscher, Chihuahua
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/35288966" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/35288966/1/?bust=1481083590&width=130" class="img pets" border="0" alt="!  1 Tito's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/41159667" class="pflink" target="_blank">
+                            <span role='heading'>! 1 LADY</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Chihuahua, Dachshund
+                                        </td>
+                                        <td>
+                                            Adult
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/41159667" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41159667/1/?bust=1561514552&width=130" class="img pets" border="0" alt="! 1 LADY's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/38934642" class="pflink" target="_blank">
+                            <span role='heading'>! 1 Tito</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Miniature Pinscher, Chihuahua
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/38934642" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38934642/2/?bust=1561759702&width=130" class="img pets" border="0" alt="! 1 Tito's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/38443571" class="pflink" target="_blank">
+                            <span role='heading'>! 3 Labbie</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Black Labrador Retriever
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Extra Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/38443571" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38443571/1/?bust=1497398125&width=130" class="img pets" border="0" alt="! 3 Labbie's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/38443568" class="pflink" target="_blank">
+                            <span role='heading'>! 3 Labboy</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Black Labrador Retriever
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Extra Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/38443568" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38443568/1/?bust=1497398097&width=130" class="img pets" border="0" alt="! 3 Labboy's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/38443570" class="pflink" target="_blank">
+                            <span role='heading'>! 3 Labgirl</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Black Labrador Retriever
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Extra Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/38443570" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38443570/1/?bust=1497398111&width=130" class="img pets" border="0" alt="! 3 Labgirl's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/38443574" class="pflink" target="_blank">
+                            <span role='heading'>! Blackjack</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Pomeranian, Spaniel
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/38443574" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38443574/1/?bust=1497398139&width=130" class="img pets" border="0" alt="! Blackjack's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/38398290" class="pflink" target="_blank">
+                            <span role='heading'>! Henry</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Cattle Dog, Beagle
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/38398290" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38398290/1/?bust=1497072553&width=130" class="img pets" border="0" alt="! Henry's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/44098192" class="pflink" target="_blank">
+                            <span role='heading'>! Kiki</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Terrier
+                                        </td>
+                                        <td>
+                                            Adult
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44098192" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/44098192/1/?bust=1563607588&width=130" class="img pets" border="0" alt="! Kiki's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/37803393" class="pflink" target="_blank">
+                            <span role='heading'>! Roxie</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Terrier, Poodle
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/37803393" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/37803393/1/?bust=1491597554&width=130" class="img pets" border="0" alt="! Roxie's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/44098191" class="pflink" target="_blank">
+                            <span role='heading'>! Suzie</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Chihuahua
+                                        </td>
+                                        <td>
+                                            Adult
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44098191" target="_blank">
+<img src="/common/images/fpm/camerashy.gif" class="img pets" border="0" alt="! Suzie's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/37696039" class="pflink" target="_blank">
+                            <span role='heading'>! Tori</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Terrier
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/37696039" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/37696039/1/?bust=1491148696&width=130" class="img pets" border="0" alt="! Tori's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/45255902" class="pflink" target="_blank">
+                            <span role='heading'>!!!Sadie Girl</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Cattle Dog, Terrier
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Small
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/45255902" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45255902/1/?bust=1563075374&width=130" class="img pets" border="0" alt="!!!Sadie Girl's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/44604569" class="pflink" target="_blank">
+                            <span role='heading'>!2 Lil Monkey</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Terrier, Chihuahua
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44604569" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/44604569/1/?bust=1561838322&width=130" class="img pets" border="0" alt="!2 Lil Monkey's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/44862917" class="pflink" target="_blank">
+                            <span role='heading'>&quot;   Eden  &quot;</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Tortoiseshell
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44862917" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/44862917/1/?bust=1559525587&width=130" class="img pets" border="0" alt="&quot;   Eden  &quot;'s profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/44862924" class="pflink" target="_blank">
+                            <span role='heading'>&quot;   Lola  &quot;</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Tortoiseshell
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44862924" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/44862924/1/?bust=1559525751&width=130" class="img pets" border="0" alt="&quot;   Lola  &quot;'s profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/44862911" class="pflink" target="_blank">
+                            <span role='heading'>&quot;  Gemini  &quot;</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Tortoiseshell
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44862911" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/44862911/1/?bust=1559525367&width=130" class="img pets" border="0" alt="&quot;  Gemini  &quot;'s profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/44731565" class="pflink" target="_blank">
+                            <span role='heading'>&quot;  Nosey  &quot;</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Domestic Short Hair
+                                        </td>
+                                        <td>
+                                            Adult
+                                            </td>
+                                            <td>
+                                                Large
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/44731565" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/44731565/1/?bust=1558226355&width=130" class="img pets" border="0" alt="&quot;  Nosey  &quot;'s profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/45287983" class="pflink" target="_blank">
+                            <span role='heading'>&quot;5 P&#39;s in a Pod&quot; Litter</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Domestic Short Hair
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/45287983" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45287983/1/?bust=1563420143&width=130" class="img pets" border="0" alt="&quot;5 P&#39;s in a Pod&quot; Litter's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/45287961" class="pflink" target="_blank">
+                            <span role='heading'>&quot;A&quot; Team Litter</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Domestic Short Hair
+                                        </td>
+                                        <td>
+                                            Baby
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/45287961" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45287961/1/?bust=1563419494&width=130" class="img pets" border="0" alt="&quot;A&quot; Team Litter's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/45289159" class="pflink" target="_blank">
+                            <span role='heading'>&quot;Andy&quot; Dufresne</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Hound, Shar-Pei
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/45289159" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45289159/1/?bust=1563648109&width=130" class="img pets" border="0" alt="&quot;Andy&quot; Dufresne's profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class="pfrow1">
+                        <td><a href="https://www.petfinder.com/petdetail/27497769" class="pflink" target="_blank">
+                            <span role='heading'>&quot;BEAR&quot;</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Domestic Medium Hair
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/27497769" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/27497769/1/?bust=1381178055&width=130" class="img pets" border="0" alt="&quot;BEAR&quot;'s profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+     
+                    <tr class = "pfrow2">
+                        <td><a href="https://www.petfinder.com/petdetail/27497661" class="pflink" target="_blank">
+                            <span role='heading'>&quot;BO&quot;</span>
+                            </a></td>
+                            
+                                <td>
+                                    
+                                    </td>
+                                    <td>
+                                        Domestic Medium Hair
+                                        </td>
+                                        <td>
+                                            Young
+                                            </td>
+                                            <td>
+                                                Medium
+                                                </td>
+                                                    <td class='legacy'>
+                                                       <a href="https://www.petfinder.com/petdetail/27497661" target="_blank">
+<img src="https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/27497661/1/?bust=1381176684&width=130" class="img pets" border="0" alt="&quot;BO&quot;'s profile on Petfinder.com">
+
+</a>
+
+</td>
+                                                    </tr>
+                                             
+                                                
+                              </td>
+                </tr>
+<tr>
+<td style="margin-top: 20px" colspan="2">
+            
+</td>
+
+
+
+
+<td style="margin-top: 20px; text-align:right" colspan="4">
+Viewing 1 to 
+ 
+25
+<a href="?breed=&multishelter=&color1=&options=&status=A&shelter=&age=&size=&more_info=&style=1&color2=&sort=name&animal=&title=&offset=25&limit=25"> Next 25 of 290405 </a>
+
+
+
+
+
+</td>
+</tr>
+
+            </td>
+            </tr>
+    </table>
+   
+
+            <script language="JavaScript">
+            function checkSearch() {
+                if ((document.search.elements[1].selectedIndex == 0) && (document.search.elements[2].value.length < 3)) {
+                    alert("Please select an animal and/or a breed to search!");
+                    document.search.elements[1].focus();
+                    return false;
+                }
+                if (document.search.elements[3].value.length < 5) {
+                    alert("Please enter your zip or postal code!");
+                    document.search.elements[3].focus();
+                    return false;
+                }
+                return true;
+            }
+            </script>
+           
+            
+         
+       </td>
+       </tr>
+            <form autocomplete="off" action="https://www.petfinder.com/search/search.cgi" method="get" name="search" onSubmit="return checkSearch();" target="_blank" style="margin-top:0px">
+            <table border="0" cellspacing="0" cellpadding="0" align="center" style="margin-top:10px">
+            <tr>
+            <td>
+           
+Didn't find what you were looking for? Search <a href="https://www.petfinder.com/" target="_blank" >Petfinder.com</a>
+now:
+<input type="hidden" name="action" value="1">
+</td>
+</tr>
+    <tr>
+        <td valign="top">Animal:
+            <select name="pet.Animal" class="formfield"  style="border: 1px solid #cccccc">
+                <option value="" selected>Please select</option>
+                <option value="BarnYard">BarnYard</option>
+                <option value="Bird">Bird </option>
+                <option value="Cat">Cat </option>
+                <option value="Dog">Dog </option>
+                <option value="Horse">Horse </option>
+                <option value="Rabbit">Rabbit </option>
+                <option value="Reptile">Reptile </option>
+                <option value="Small&amp;Furry">Small&amp;Furry </option>
+            </select>
+ 
+      Breed:
+            <input type="text" name="pet.Breed" class="formfield" size="12" style="border: 1px solid #cccccc">
+<br>
+       Zip/Postal Code:
+            <input type="text" name="location" class="formfield" size="12" style="border: 1px solid #cccccc">
+
+       
+            <input type="hidden" name="preview" value="1">
+             <input type="image" border="0" src="https://www.petfinder.com/common/images/fpm/go2.gif" width="15" height="15"  >
+        </td>
+    </tr>
+</table>
+</form>
+
+</div>
+
+
+   
+   
+</body>
+</html>
