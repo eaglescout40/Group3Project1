@@ -23,8 +23,6 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />  <!--Select2 CDN-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>  <!--Select2 CDN-->
 </head>
 
 <body>
@@ -69,97 +67,101 @@
     <!-- Add an accordion with the search fields/options -->
     <div class="accordion">
 
-            <!--User Search Input goes here-->
-            <div class="container">
+        <!--User Search Input goes here-->
+        <div class="container">
 
-              <!-- Content here -->
-            
-            <div id="search-area">Search area. Include dropdown with search filters.</div>
+        <!-- Search areas -->
+            <div id="search-area">
+                Search area. Include dropdown with search filters.
+            </div>
+
+            <!-- Animal Type dropdown -->
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Animal Type
+                    Animal Type
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Dog</a>
-                  <a class="dropdown-item" href="#">Cat</a>
-                  <a class="dropdown-item" href="#">Hamster</a>
-                  <a class="dropdown-item" href="#">Snake</a>
+                    <a class="dropdown-item" href="#">Dog</a>
+                    <a class="dropdown-item" href="#">Cat</a>
+                    <a class="dropdown-item" href="#">Hamster</a>
+                    <a class="dropdown-item" href="#">Snake</a>
                 </div>
-              </div>
-              
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Area to Search
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Zip Code</a>
-                  <a class="dropdown-item" href="#">City</a>
-                  <a class="dropdown-item" href="#">State</a>
-                </div>
-              </div>
+            </div>
 
-              <div class="input-group mb-3">
+            <!-- Area Select dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Area to Search
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Zip Code</a>
+                    <a class="dropdown-item" href="#">City</a>
+                    <a class="dropdown-item" href="#">State</a>
+                </div>
+            </div>
+
+            <!-- Input for animal breed selection -->
+            <!-- Change to dropdown for array based off of animal type selection -->
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Animal Type" aria-describedby="basic-addon1">
-              </div>
-              
-              <div class="input-group mb-3">
+            </div>
+
+            <!-- Search location -->
+            <!-- Change to have code validation like other large sites -->
+            <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Area to Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2">@example.com</span>
-                </div>
-              </div>
-            </div>
-           <!--Search Results go here-->
-
-            <!--Bootstrap Card Snippet-->
-            <div class="container">
-                <div id="result-list">
-                    Search result list
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">@example.com</span>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
+            </div>
+        </div>
+    </div>
+    <!--Search Results go here-->
+    <!-- Search results to be dynamically generated from JS inside card containers -->
+
+    <!--**PLACEHOLDER** Bootstrap Card Snippet-->
+    <div class="container">
+        <div id="result-list">
+            Search result list
+        </div>
+
+        <!-- First generated card -->
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Card Title -->
+                        <h5 class="card-title">Special title treatment</h5>
+
+                        <!-- Card Text -->
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                        <!-- Card link/button -->
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
-          </div> 
-           
 
-            <!--Animal Pics Code goes here-->
-            
-                       
-            
-            <!--General Text (News, Articles, Alerts, etc)-->
-            <div class="container">
-              <div id="img-text">General Animal Pics go here</div>
-            <div class="media">
-              <img src="https://via.placeholder.com/300
-              C/O https://placeholder.com/" class="mr-3" alt="http://via.placeholder.com">
-              <div class="media-body">
-                <h5 class="mt-0">Animals in the News!</h5>
-                This area will have a news type feed showing animals that are in the news, need adoption, did something cool, etc.
-              </div>
+        <!-- Second generated card -->
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
-            </div>
+        <!-- Add more cards or go to the next row with class 'row' -->
+        </div>
+    </div>
+    </div>
+
+    <!-- Add Google Maps widget here. On right of search results -->
+    
             
             <!--Map feature goes here-->
             <div class="container">
