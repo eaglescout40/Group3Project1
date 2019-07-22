@@ -76,7 +76,7 @@
                 </h5>
             </div>
         
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                 
         <div class="container">
@@ -86,20 +86,45 @@
                 Search area. Include dropdown with search filters.
             </div>
 
+            <!-- Search form -->
+            <form>
+
+                <!-- Select options for animal type -->
+                <div class="form-group">
+                    <label for="animal-type-select">Animal type</label>
+                    <select class="form-control" id="animal-type-select">
+                        <option>Any</option>
+                        <option>Dog</option>
+                        <option>Cat</option>
+                        <option>Hampster</option>
+                        <option>Snake</option>
+                    </select>
+                </div>
+
+                <!-- Form dropdown for animal breed -->
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Animal breed</label>
+                    <select class="form-control" id="animal-breed">
+                        <!-- Options to be added dynamically on selecting animal type -->
+                        <option>Any</option>
+                    </select>
+                </div>
+            </form>
+
             <!-- Animal Type dropdown -->
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Animal Type
-                </button>
+                </button> -->
 
                 <!-- Animal types -->
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Dog</a>
                     <a class="dropdown-item" href="#">Cat</a>
                     <a class="dropdown-item" href="#">Hamster</a>
                     <a class="dropdown-item" href="#">Snake</a>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Area Select dropdown -->
             <div class="dropdown">
