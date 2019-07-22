@@ -25,16 +25,7 @@
 </head>
 
 <body>
-        <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div>
+        
     <!--NavBar Code-->
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
 
@@ -74,9 +65,20 @@
     </div>
     
     <!-- Add an accordion with the search fields/options -->
-    <div class="accordion">
-
-        <!--User Search Input goes here-->
+    <div class="container">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Search here!
+                    </button>
+                </h5>
+            </div>
+        
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                
         <div class="container">
 
         <!-- Search areas -->
@@ -131,7 +133,13 @@
                     </div>
             </div>
         </div>
+                </div>
+            </div>
+        </div>
     </div>
+    </div>
+
+    
 
     <!--Search Results go here-->
     <!-- Search results to be dynamically generated from JS inside card containers -->
