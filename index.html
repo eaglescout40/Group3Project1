@@ -93,6 +93,7 @@
                 <div class="form-group">
                     <label for="animal-type-select">Animal type</label>
                     <select class="form-control" id="animal-type-select">
+                        <option selected>...</option>
                         <option>Any</option>
                         <option>Dog</option>
                         <option>Cat</option>
@@ -106,8 +107,33 @@
                     <label for="exampleFormControlSelect1">Animal breed</label>
                     <select class="form-control" id="animal-breed">
                         <!-- Options to be added dynamically on selecting animal type -->
-                        <option>Any</option>
+                        <option selected>...</option>
                     </select>
+                </div>
+
+                <!-- State dropdown -->
+                <div class="form-group col-md-4">
+                    <label for="dropdown-state">State</label>
+                    <select id="dropdown-state" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+
+                <!-- City dropdown -->
+                <!-- Dynamically tied to State selection -->
+                <div class="form-group col-md-4">
+                    <label for="dropdown-city">State</label>
+                    <select id="dropdown-city" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+
+                <!-- Zipcode input -->
+                <div class="form-group col-md-2">
+                    <label for="input-zipcode">Zip</label>
+                    <input type="text" class="form-control" id="input-zipcode">
                 </div>
             </form>
 
