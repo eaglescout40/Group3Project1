@@ -57,7 +57,7 @@
 
         <!-- Add picture/comic here -->
 
-
+        <div src="" alt="Put image here" id="random-image"></div>
 
         <!-- Add animal info/facts here -->
             
@@ -79,111 +79,67 @@
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                 
-        <div class="container">
+                    <div class="container">
 
-        <!-- Search areas -->
-            <div id="search-area">
-                Search area. Include dropdown with search filters.
-            </div>
+                    <!-- Search areas -->
+                        <div id="search-area">
+                            Search area. Include dropdown with search filters.
+                        </div>
 
-            <!-- Search form -->
-            <form>
+                        <!-- Search form -->
+                        <form>
 
-                <!-- Select options for animal type -->
-                <div class="form-group">
-                    <label for="animal-type-select">Animal type</label>
-                    <select class="form-control" id="animal-type-select">
-                        <option selected>...</option>
-                        <option>Any</option>
-                        <option>Dog</option>
-                        <option>Cat</option>
-                        <option>Hampster</option>
-                        <option>Snake</option>
-                    </select>
-                </div>
+                            <!-- Select options for animal type -->
+                            <div class="form-group">
+                                <label for="animal-type-select">Animal type</label>
+                                <select class="form-control" id="animal-type-select">
+                                    <option selected>...</option>
+                                    <option>Any</option>
+                                    <option>Dog</option>
+                                    <option>Cat</option>
+                                    <option>Hampster</option>
+                                    <option>Snake</option>
+                                </select>
+                            </div>
 
-                <!-- Form dropdown for animal breed -->
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Animal breed</label>
-                    <select class="form-control" id="animal-breed">
-                        <!-- Options to be added dynamically on selecting animal type -->
-                        <option selected>...</option>
-                    </select>
-                </div>
+                            <!-- Form dropdown for animal breed -->
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Animal breed</label>
+                                <select class="form-control" id="animal-breed">
+                                    <!-- Options to be added dynamically on selecting animal type -->
+                                    <option selected>...</option>
+                                </select>
+                            </div>
 
-                <!-- State dropdown -->
-                <div class="form-group col-md-4">
-                    <label for="dropdown-state">State</label>
-                    <select id="dropdown-state" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
+                            <!-- State dropdown -->
+                            <div class="form-group col-md-4">
+                                <label for="dropdown-state">State</label>
+                                <select id="dropdown-state" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
 
-                <!-- City dropdown -->
-                <!-- Dynamically tied to State selection -->
-                <div class="form-group col-md-4">
-                    <label for="dropdown-city">State</label>
-                    <select id="dropdown-city" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
+                            <!-- City dropdown -->
+                            <!-- Dynamically tied to State selection -->
+                            <div class="form-group col-md-4">
+                                <label for="dropdown-city">State</label>
+                                <select id="dropdown-city" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
 
-                <!-- Zipcode input -->
-                <div class="form-group col-md-2">
-                    <label for="input-zipcode">Zip</label>
-                    <input type="text" class="form-control" id="input-zipcode">
-                </div>
-            </form>
+                            <!-- Zipcode input -->
+                            <div class="form-group col-md-2">
+                                <label for="input-zipcode">Zip</label>
+                                <input type="text" class="form-control" id="input-zipcode">
+                            </div>
 
-            <!-- Animal Type dropdown -->
-            <!-- <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Animal Type
-                </button> -->
-
-                <!-- Animal types -->
-                <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Dog</a>
-                    <a class="dropdown-item" href="#">Cat</a>
-                    <a class="dropdown-item" href="#">Hamster</a>
-                    <a class="dropdown-item" href="#">Snake</a>
-                </div>
-            </div> -->
-
-            <!-- Area Select dropdown -->
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Area to Search
-                </button>
-
-                <!-- Search refinement -->
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Zip Code</a>
-                    <a class="dropdown-item" href="#">City</a>
-                    <a class="dropdown-item" href="#">State</a>
-                </div>
-            </div>
-
-            <!-- Input for animal breed selection -->
-            <!-- Change to dropdown for array based off of animal type selection -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Animal Type" aria-describedby="basic-addon1">
-            </div>
-
-            <!-- Search location -->
-            <!-- Change to have code validation like other large sites -->
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Area to Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">@example.com</span>
+                            <!-- Submit button -->
+                            <button type="button" class="btn btn-info">Submit</button>
+                        </form>
                     </div>
-            </div>
-        </div>
                 </div>
             </div>
         </div>
