@@ -65,10 +65,10 @@
     </div>
     
     <!-- Add an accordion with the search fields/options -->
-    <div class="container">
-    <div class="accordion" id="accordionExample">
+    <div class="container mb-4">
+    <div class="accordion border-bottom rounded" id="accordion-search">
         <div class="card">
-            <div class="card-header" id="headingOne">
+            <div class="card-header" id="search-header">
                 <h5 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         Search here!
@@ -86,63 +86,85 @@
                         <!-- Search form -->
                         <form>
 
-                            <!-- Left section -->
-                            <div id="search-left">
-                                <!-- Select options for animal type -->
-                                <div class="form-group col-5">
-                                    <label for="animal-type-select">Animal type</label>
-                                    <select class="form-control" id="animal-type-select">
-                                        <option selected>...</option>
-                                        <option>Any</option>
-                                        <option>Dog</option>
-                                        <option>Cat</option>
-                                        <option>Hampster</option>
-                                        <option>Snake</option>
-                                    </select>
+                            <div id="search-left" class="row">
+
+                                <!-- Left section -->
+                                <div class="col-6">
+                                    <div class="card border-0">
+                                        
+                                        <!-- Select options for animal type -->
+                                        <div class="form-group card-body col-md">
+                                            <label for="animal-type-select">Animal type</label>
+                                            <select class="form-control" id="animal-type-select">
+                                                <option selected>...</option>
+                                                <option>Any</option>
+                                                <option>Dog</option>
+                                                <option>Cat</option>
+                                                <option>Hampster</option>
+                                                <option>Snake</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- Form dropdown for animal breed -->
+                                        <div class="form-group col-md">
+                                            <label for="exampleFormControlSelect1">Animal breed</label>
+                                            <select class="form-control" id="animal-breed">
+                                                <!-- Options to be added dynamically on selecting animal type -->
+                                                <option selected>...</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- State dropdown -->
+                                        <div class="form-group col-md">
+                                            <label for="dropdown-state">State</label>
+                                            <select id="dropdown-state" class="form-control">
+                                                <option selected>Choose...</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- City dropdown -->
+                                        <!-- Dynamically tied to State selection -->
+                                        <div class="form-group col-md">
+                                            <label for="dropdown-city">City</label>
+                                            <select id="dropdown-city" class="form-control">
+                                                <option selected>Choose...</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                    
+                                        <!-- Zipcode input -->
+                                        <div class="form-group col-md-8">
+                                            <label for="input-zipcode">Zip</label>
+                                            <input type="text" class="form-control" id="input-zipcode">
+                                        </div>
+                                    
+                                        <!-- Submit button -->
+                                        <button type="button" class="btn btn-info col-md-5">Submit</button>
+                                    </div>
                                 </div>
+                                
+                                <!-- Right section -->
+                                <div id="search-right" class="col-md-6">
 
-                                <!-- Form dropdown for animal breed -->
-                                <div class="form-group col-5">
-                                    <label for="exampleFormControlSelect1">Animal breed</label>
-                                    <select class="form-control" id="animal-breed">
-                                        <!-- Options to be added dynamically on selecting animal type -->
-                                        <option selected>...</option>
-                                    </select>
+                                    <div class="card border-0">
+                                        
+                                        <div class="form-group card-body col-md">
+                                            
+                                            Recent Search Hostory
+
+                                            <!-- Dynamically add these after searches are done -->
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+                                                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                                                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                                                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                                                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <!-- State dropdown -->
-                                <div class="form-group col-md-4">
-                                    <label for="dropdown-state">State</label>
-                                    <select id="dropdown-state" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-
-                                <!-- City dropdown -->
-                                <!-- Dynamically tied to State selection -->
-                                <div class="form-group col-md-4">
-                                    <label for="dropdown-city">City</label>
-                                    <select id="dropdown-city" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-
-                                <!-- Zipcode input -->
-                                <div class="form-group col-md-2">
-                                    <label for="input-zipcode">Zip</label>
-                                    <input type="text" class="form-control" id="input-zipcode">
-                                </div>
-
-                                <!-- Submit button -->
-                                <button type="button" class="btn btn-info">Submit</button>
-                            </div>
-
-                            <!-- Right section -->
-                            <div id="search-right">
-
-                                <div class="form-group col-5">hello</div>
                             </div>
                         </form>
                     </div>
@@ -160,7 +182,7 @@
     <!--**PLACEHOLDER** Bootstrap Card Snippet-->
     <div class="container">
         <div id="result-list">
-            Search result list
+            <!-- Search result list -->
         </div>
 
         <!-- First generated card -->
