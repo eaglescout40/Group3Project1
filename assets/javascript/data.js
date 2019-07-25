@@ -52,7 +52,7 @@ var firebaseConfig = {
         }
     }
     
-  },
+  },    
   {
     name:'PQR',  
     address:'456 street, Chicago, IL',
@@ -64,22 +64,25 @@ var firebaseConfig = {
 
   ];
 
-  log('after creating array');
-  log('name: '+usersObjArray[0].name)
+//   log('after creating array');
+//   log('name: '+usersObjArray[0].name)
   
   function addRow(pUsersObjArray){
-        log('in addRow');
+        //log('in addRow');
         // open a loop on the objects array
         for(var i=0;i<pUsersObjArray.length;i++){
-            log('current index : '+i);
-            log('address: '+pUsersObjArray[i].address);
+            //log('current index : '+i);
+            //log('address: '+pUsersObjArray[i].address);
             // add a row to the database
             database.ref('/UserID-'+i).set(
                 pUsersObjArray[i]
             );
-            log('after database set');
+            //log('after database set');
         }
   }
 
   addRow(usersObjArray);
 
+database.ref().on("child_added",function(data){
+    log(data.val());
+})
