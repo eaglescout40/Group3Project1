@@ -82,62 +82,68 @@
                     <div class="container">
 
                     <!-- Search areas -->
-                        <div id="search-area">
-                            Search area. Include dropdown with search filters.
-                        </div>
 
                         <!-- Search form -->
                         <form>
 
-                            <!-- Select options for animal type -->
-                            <div class="form-group">
-                                <label for="animal-type-select">Animal type</label>
-                                <select class="form-control" id="animal-type-select">
-                                    <option selected>...</option>
-                                    <option>Any</option>
-                                    <option>Dog</option>
-                                    <option>Cat</option>
-                                    <option>Hampster</option>
-                                    <option>Snake</option>
-                                </select>
+                            <!-- Left section -->
+                            <div>
+                                <!-- Select options for animal type -->
+                                <div class="form-group col-5">
+                                    <label for="animal-type-select">Animal type</label>
+                                    <select class="form-control" id="animal-type-select">
+                                        <option selected>...</option>
+                                        <option>Any</option>
+                                        <option>Dog</option>
+                                        <option>Cat</option>
+                                        <option>Hampster</option>
+                                        <option>Snake</option>
+                                    </select>
+                                </div>
+
+                                <!-- Form dropdown for animal breed -->
+                                <div class="form-group col-5">
+                                    <label for="exampleFormControlSelect1">Animal breed</label>
+                                    <select class="form-control" id="animal-breed">
+                                        <!-- Options to be added dynamically on selecting animal type -->
+                                        <option selected>...</option>
+                                    </select>
+                                </div>
+
+                                <!-- State dropdown -->
+                                <div class="form-group col-md-4">
+                                    <label for="dropdown-state">State</label>
+                                    <select id="dropdown-state" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+
+                                <!-- City dropdown -->
+                                <!-- Dynamically tied to State selection -->
+                                <div class="form-group col-md-4">
+                                    <label for="dropdown-city">City</label>
+                                    <select id="dropdown-city" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+
+                                <!-- Zipcode input -->
+                                <div class="form-group col-md-2">
+                                    <label for="input-zipcode">Zip</label>
+                                    <input type="text" class="form-control" id="input-zipcode">
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="button" class="btn btn-info">Submit</button>
                             </div>
 
-                            <!-- Form dropdown for animal breed -->
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Animal breed</label>
-                                <select class="form-control" id="animal-breed">
-                                    <!-- Options to be added dynamically on selecting animal type -->
-                                    <option selected>...</option>
-                                </select>
-                            </div>
+                            <!-- Right section -->
+                            <div>
 
-                            <!-- State dropdown -->
-                            <div class="form-group col-md-4">
-                                <label for="dropdown-state">State</label>
-                                <select id="dropdown-state" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
+                                <div class="form-group col-6">hello</div>
                             </div>
-
-                            <!-- City dropdown -->
-                            <!-- Dynamically tied to State selection -->
-                            <div class="form-group col-md-4">
-                                <label for="dropdown-city">City</label>
-                                <select id="dropdown-city" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-
-                            <!-- Zipcode input -->
-                            <div class="form-group col-md-2">
-                                <label for="input-zipcode">Zip</label>
-                                <input type="text" class="form-control" id="input-zipcode">
-                            </div>
-
-                            <!-- Submit button -->
-                            <button type="button" class="btn btn-info">Submit</button>
                         </form>
                     </div>
                 </div>
