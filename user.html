@@ -94,23 +94,93 @@
                 </table>
             </div>
 
-            <!-- Current Pet info -->
-            <div id="pet-info">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+        </div>
+
+        <!-- Current Pet info -->
+        <div id="pet-info" class="row col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Pet name: </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Breed: </h6>
+
+                    <p class="card-text">
+                        Color: 
+                    </p>
+
+                    <p class="card-text">
+                        Gender: 
+                    </p>
+
+                    <p class="card-text">
+                        Type: 
+                    </p>
+
+                    <p class="card-text">
+                        Altered: 
+                    </p>
+
                 </div>
             </div>
-
-            <!-- Add pet info form -->
-            <div id="add-pet">
-                <form>
-                </form>
-            </div>
         </div>
+
+        <!-- Add pet info form -->
+        <div id="add-pet" class="row col-md">
+            <form class="col">
+
+                <!-- User pet name -->
+                <div class="form-group">
+                <label for="user-pet-name">Pet Name:</label>
+                <input type="email" class="form-control" id="user-pet-name">
+                </div>
+
+                <!-- User pet breed -->
+                <div class="form-group">
+                <label for="exampleInputPassword1">Breed:</label>
+                <input type="password" class="form-control" id="user-pet-breed">
+                </div>
+
+                <!-- User pet color -->
+                <div class="form-group">
+                <label for="exampleInputPassword1">Color:</label>
+                <input type="password" class="form-control" id="user-pet-color">
+                </div>
+
+                <!-- User pet gender -->
+                <div class="form-group">
+                <label for="exampleInputPassword1">Gender:</label>
+                <input type="password" class="form-control" id="user-pet-gender">
+                </div>
+
+                <!-- User pet type -->
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Pet Type:</label>
+                    <select multiple class="form-control" id="user-pet-type">
+                        <option>Dog</option>
+                        <option>Cat</option>
+                        <option>Hampster</option>
+                        <option>Snake</option>
+                        <option>Other...</option>
+                    </select>
+                </div>
+
+                <!-- User pet altered state -->
+                <div class="form-group">
+                    <label for="">Altered?:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-yes" value="option1">
+                    <label class="form-check-label" for="fixed-yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-no" value="option2">
+                    <label class="form-check-label" for="fixed-no">No</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+        
     </div>
 
     
