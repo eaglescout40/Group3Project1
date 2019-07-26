@@ -154,7 +154,7 @@
                 <!-- User pet type -->
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">Pet Type:</label>
-                    <select multiple class="form-control" id="user-pet-type">
+                    <select class="form-control" id="user-pet-type">
                         <option>Dog</option>
                         <option>Cat</option>
                         <option>Hampster</option>
@@ -166,14 +166,14 @@
                 <!-- User pet altered state -->
                 <div class="form-group">
                     <label for="">Altered?:</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-yes" value="option1">
-                    <label class="form-check-label" for="fixed-yes">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-no" value="option2">
-                    <label class="form-check-label" for="fixed-no">No</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-yes" value="true">
+                        <label class="form-check-label" for="fixed-yes">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-no" value="false">
+                        <label class="form-check-label" for="fixed-no">No</label>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
