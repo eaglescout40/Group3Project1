@@ -86,4 +86,3 @@ var firebaseConfig = {
 database.ref().on("child_added",function(data){
     log(data.val());
 })
-
