@@ -15,7 +15,7 @@ var client_secret = "JDx7nY5jRhNXP0UPmG7YbwE2OSqlOvSrB0urVCab"; //Secret
 var accessToken = "";
 var refreshTokenAttempted = false;
 
-//log('start');
+
 // Create a firebase object
 var firebaseConfig = {
     apiKey: "AIzaSyBXZSA7zp8NKte4tg9zlQTCafnd8M4KUvI",
@@ -25,6 +25,7 @@ var firebaseConfig = {
     storageBucket: "",
     messagingSenderId: "169074872966",
     appId: "1:169074872966:web:3cfd0a22c82878cc"
+
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -65,54 +66,34 @@ var usersObjArray =
                         state: 'GA'
                     }
                 }]
-        },
-        {
-            name: 'PQR',
-            address: '456 street, Chicago, IL',
-            email: 'a@b.com',
-            petPreference: {
-                type: 'cat', breed: 'Tabby', gender: 'female', color: 'Orange', altered: 'Yes'
-            }
-        }
 
-    ];
-function addRow(pUsersObjArray) {
-    // open a loop on the objects array
-    for (var i = 0; i < pUsersObjArray.length; i++) {
-        // add a row to the database
-        database.ref('/UserID-' + i).set(
-            pUsersObjArray[i]
-        );
-    }
-}
-// temporary call to create initial data
-addRow(usersObjArray);
-// temporary searchHistory object    
-var searchHistoryObj = {
-    type: 'cat',
-    breed: 'bombay cat',
-    gender: 'male',
-    color: 'black',
-    altered: 'Yes',
-    location: {
-        zip: '30022',
-        city: 'Alpharetta',
-        state: 'GA'
-    }
-};
-// Function to add a search history
-function addHistory(pUserID) {
-    var cnt = 0;
-    database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
-        //loop and find the next element of array to use
-        if (data.val() != undefined) {
-            var child = data.val()[cnt];
-            if (child != undefined) {
-                while (child != undefined) {
-                    cnt++
-                    child = data.val()[cnt];
-                }
-            }
+    
+  },    
+  {
+    name:'PQR',  
+    address:'456 street, Chicago, IL',
+    email:'a@b.com',
+    petPreference : {
+        type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
+      }
+  }
+
+  ];
+
+//   log('after creating array');
+//   log('name: '+usersObjArray[0].name)
+  
+  function addRow(pUsersObjArray){
+        //log('in addRow');
+        // open a loop on the objects array
+        for(var i=0;i<pUsersObjArray.length;i++){
+            //log('current index : '+i);
+            //log('address: '+pUsersObjArray[i].address);
+            // add a row to the database
+            database.ref('/UserID-'+i).set(
+                pUsersObjArray[i]
+            );
+            //log('after database set');
         }
     });
     // Add search history to the user
@@ -244,3 +225,37 @@ function search(searchPetObj) {
 }
 
 search(searchPetObj);
+// On click function to pull city names based on state
+$(document).on("click", "#dropdown-state", function(){
+
+    // Ajax pull for json file
+    $.ajax({
+        type: "GET",
+        url:"./assets/media/csvjson.json",
+        }).then((resp)=>{
+            console.log(resp);
+
+            // Delete child elements of city dropdown
+            $("#dropdown-city").empty();
+
+            // Add placeholder to city dropdown
+            $("#dropdown-city").append("<option>Choose...</option>");
+
+            // capture value of state value
+            var stateVal = $("#dropdown-state").val();
+            console.log(stateVal);
+
+            $.each(resp, function(index, value) {
+                if( resp[index].state_id === stateVal ){
+
+                    // Set variables to create new options for city
+                    var cityDropdown = $("#dropdown-city");
+                    var newCityOption = $("<option>");
+                    
+                    // Append new options for city for each city in the state
+                    cityDropdown.append(newCityOption.text(resp[index].city).attr({
+                        value: resp[index].state_id,
+                    }))
+            })
+    });
+});
