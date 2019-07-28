@@ -1,252 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <H1>Hello World</H1>
-    <P>This is me </P>
-</body>
-=======
-=======
->>>>>>> 63fbd3b6adb82e329ea2d4283a64f66d0eb05f9a
-=======
-
->>>>>>> 155e2625f4b0f3befbe582a07f74b7b66640e32a
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>Find a Pet!</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />  <!--Select2 CDN-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>  <!--Select2 CDN-->
-</head>
-
-<body>
-    <!--NavBar Code-->
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Search for Animals</a>
-                            <a class="dropdown-item" href="#">Animals in the news</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">View the map</a>
-                        </div>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-            </nav>
-
-            <!--User Search Input goes here-->
-            <div class="container">
-              <!-- Content here -->
-            
-            <div id="search-area">Search area. Include dropdown with search filters.</div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Animal Type
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Dog</a>
-                  <a class="dropdown-item" href="#">Cat</a>
-                  <a class="dropdown-item" href="#">Hamster</a>
-                  <a class="dropdown-item" href="#">Snake</a>
-                </div>
-              </div>
-              
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Area to Search
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Zip Code</a>
-                  <a class="dropdown-item" href="#">City</a>
-                  <a class="dropdown-item" href="#">State</a>
-                </div>
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">@</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Animal Type" aria-describedby="basic-addon1">
-              </div>
-              
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Area to Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2">@example.com</span>
-                </div>
-              </div>
-            </div>
-           <!--Search Results go here-->
-           <!--Bootstrap Card Snippet-->
-           <div class="container">
-            <div id="result-list">Search result list</div>
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div><div class="row">
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> 
-           
-
-            <!--Animal Pics Code goes here-->
-            <div class="container">
-              <div id="img-text">Text goes here</div>
-            <dl class="row">
-                <dt class="col-sm-3">Description lists</dt>
-                <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
-              
-                <dt class="col-sm-3">Euismod</dt>
-                <dd class="col-sm-9">
-                  <p>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</p>
-                  <p>Donec id elit non mi porta gravida at eget metus.</p>
-                </dd>
-              
-                <dt class="col-sm-3">Malesuada porta</dt>
-                <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
-              
-                <dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
-                <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-              
-                <dt class="col-sm-3">Nesting</dt>
-                <dd class="col-sm-9">
-                  <dl class="row">
-                    <dt class="col-sm-4">Nested definition list</dt>
-                    <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-                  </dl>
-                </dd>
-              </dl> 
-            </div>
-                       
-            
-            <!--General Text (News, Articles, Alerts, etc)-->
-            <div class="container">
-              <div id="img-text">General Animal Pics go here</div>
-            <div class="media">
-              <img src="https://via.placeholder.com/300
-              C/O https://placeholder.com/" class="mr-3" alt="http://via.placeholder.com">
-              <div class="media-body">
-                <h5 class="mt-0">Animals in the News!</h5>
-                This area will have a news type feed showing animals that are in the news, need adoption, did something cool, etc.
-              </div>
-            </div>
-            </div>
-            
-            <!--Map feature goes here-->
-            <div class="container">
-              <div id="map">Map</div>
-              <p>This is the area for the Goolgle Maps Plugin\Widget.<div id="result-list">Search result list</div></p>
-            </div>
-            
-
-
-            
-            <iframe style="width: 500px; height: 600px; margin: 0;" src="https://fpm.petfinder.com/petlist/petlist.cgi?shelter=ALL_GA&status=A&age=&limit=25&offset=0&animal=&title=&style=8&ref=1JWHb9c3FxbV9g_" width="500px" height="600px" hspace="0" vspace="0"  frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" bordercolor="#000000"></iframe>
-            
-            
-            
-        </div>
-        
-
-
-
-
-
-
-        
-
-
-=======
 
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -259,11 +16,22 @@
     type="text/javascript"></script>
 
     <!-- CDN 2 -->
+        
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 
+    <script src="./assets/javascript/test.js"></script>
 
     <title>Find a Pet!</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script defer src="assets/javascript/data.js"></script>
+    
+
+    
 
 </head>
 
@@ -294,7 +62,7 @@
             </ul>
         </div>
     </nav>
-
+    <div class = "container" id = "petContainer1">
     <!-- Page banner - Show picture and random information/text -->
     <div class="container">
 
@@ -327,6 +95,7 @@
                     <!-- Search areas -->
 
                         <!-- Search form -->
+                        <div class = frmErrors></div>
                         <form>
 
                             <div id="search-left" class="row">
@@ -362,7 +131,57 @@
                                             <label for="dropdown-state">State</label>
                                             <select id="dropdown-state" class="form-control">
                                                 <option selected>Choose...</option>
-                                                <option>...</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="DC">District Of Columbia</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                                <option value="HI">Hawaii</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IN">Indiana</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="ME">Maine</option>
+                                                <option value="MD">Maryland</option>
+                                                <option value="MA">Massachusetts</option>
+                                                <option value="MI">Michigan</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="NH">New Hampshire</option>
+                                                <option value="NJ">New Jersey</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option value="NY">New York</option>
+                                                <option value="NC">North Carolina</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="OH">Ohio</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="PA">Pennsylvania</option>
+                                                <option value="RI">Rhode Island</option>
+                                                <option value="SC">South Carolina</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
                                             </select>
                                         </div>
                                         
@@ -372,7 +191,7 @@
                                             <label for="dropdown-city">City</label>
                                             <select id="dropdown-city" class="form-control">
                                                 <option selected>Choose...</option>
-                                                <option>...</option>
+                                                
                                             </select>
                                         </div>
                                     
@@ -458,7 +277,7 @@
         <!-- Add more cards or go to the next row with class 'row' -->
         </div>
     </div>
-    </div>
+    <!--</div>-->
 
     <!-- Add Google Maps widget here. On right of search results -->
     
@@ -476,28 +295,14 @@
             </div>
         </p>
     </div>
-    
-    <!-- Pet Finder iframe - TO BE REMOVED -->
-    <iframe style="width: 500px; height: 600px; margin: 0;" src="https://fpm.petfinder.com/petlist/petlist.cgi?shelter=ALL_GA&status=A&age=&limit=25&offset=0&animal=&title=&style=8&ref=1JWHb9c3FxbV9g_" width="500px" height="600px" hspace="0" vspace="0"  frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" bordercolor="#000000"></iframe>
-        
->>>>>>> 63fbd3b6adb82e329ea2d4283a64f66d0eb05f9a
+</div>
+         
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
 
-
-    
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script defer src ="assets/javascript/app.js"></script>
 </body>
 
-<<<<<<< HEAD
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ7W13E5gXJvM4oBksiaqf7wMb7t4_eHQ&callback=initMap"
-        type="text/javascript"></script>
-
->>>>>>> 63c21fd9fd9ef2db7aca0246d316fbc3cd0d9f37
-</html>
-<<<<<<< HEAD
-=======
-
 
 </html>
-
->>>>>>> 63fbd3b6adb82e329ea2d4283a64f66d0eb05f9a
-=======
->>>>>>> 155e2625f4b0f3befbe582a07f74b7b66640e32a
