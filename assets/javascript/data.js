@@ -352,7 +352,7 @@ $(document).on("click", "#dropdown-state", function(){
                     
                     // Append new options for city for each city in the state
                     cityDropdown.append(newCityOption.text(resp[index].city).attr({
-                        value: resp[index].state_id,
+                        value: resp[index].city,
                     }))
                 }
             })
@@ -362,8 +362,42 @@ $(document).on("click", "#dropdown-state", function(){
 
 
 // On click event for submit
-$(document).on("click", "submit-search", function(){
+$(document).on("click", "#submit-search", function(){
     event.preventDefault();
 
-    
+    var typeSelected = $("#animal-type-select").val();
+    log(typeSelected);
+
+    var genderSelected = $("#animal-gender").val();
+    log(genderSelected);
+
+    var colorSelected = $("#animal-color").val();
+    log(colorSelected);
+
+    var breedSelected = $("#animal-breed").val();
+    log(breedSelected);
+
+    var stateSelected = $("#dropdown-state").val();
+    log(stateSelected);
+
+    var citySelected = $("#dropdown-city").text();
+    log(citySelected);
+
+    var zipcodeSelected = $("#input-zipcode").val();
+    log(zipcodeSelected);
+
+    var newDataObject = {
+        type: typeSelected,
+        breed: breedSelected,
+        gender: genderSelected,
+        color: colorSelected,
+        location: {
+            city: citySelected,
+            state: stateSelected,
+            zip: zipcodeSelected,
+        }
+    }
+
+    database.ref().push(newDataObject)
+
 })
