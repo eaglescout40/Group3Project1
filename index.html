@@ -331,7 +331,7 @@ $.ajax({
                         var cityDropdown = $("#dropdown-city");
                         var newCityOption = $("<option>");
                         
-                        cityDropdown.append(newCityOption.text(resp[index].city,).attr({
+                        cityDropdown.append(newCityOption.text(resp[index].city).attr({
                             value: resp[index].state_id,
                         }))
                     }
