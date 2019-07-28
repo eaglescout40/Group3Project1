@@ -123,7 +123,7 @@ addHistory('UserID-0');
 addHistory('UserID-1');
 //function to populate search-history element for the userID provided 
 function populateSearchHistory(pUserID) {
-    //log('in populateSearchHistory userID : ' + pUserID);
+    log('in populateSearchHistory userID : ' + pUserID);
     database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
         // get all the child elements
         var cnt = 0;
