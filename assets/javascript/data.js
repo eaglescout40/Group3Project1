@@ -29,7 +29,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // create a database ref variable
-var database = firebase.database();
+var database = firebase.database();  
 // temporary code to create initial data
 var usersObjArray =
     [
