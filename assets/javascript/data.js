@@ -95,45 +95,29 @@ var usersObjArray =
             );
             //log('after database set');
         }
-  }
-
-  addRow(usersObjArray);
-
-database.ref().on("child_added",function(data){
-    log(data.val());
-})
-
-// On click function to pull city namesb based on state
-$(document).on("click", "#dropdown-state", function(){
-
-    // Ajax pull for json file
-    $.ajax({
-        type: "GET",
-        url:"./assets/media/csvjson.json",
-        }).then((resp)=>{
-            console.log(resp);
-
-            // Delete child elements of city dropdown
-            $("#dropdown-city").empty();
-
-            // Add placeholder to city dropdown
-            $("#dropdown-city").append("<option>Choose...</option>");
-
-            // capture value of state value
-            var stateVal = $("#dropdown-state").val();
-            console.log(stateVal);
-
-            $.each(resp, function(index, value) {
-                if( resp[index].state_id === stateVal ){
-
-                    // Set variables to create new options for city
-                    var cityDropdown = $("#dropdown-city");
-                    var newCityOption = $("<option>");
-                    
-                    // Append new options for city for each city in the state
-                    cityDropdown.append(newCityOption.text(resp[index].city).attr({
-                        value: resp[index].state_id,
-                    }))
+    });
+    // Add search history to the user
+    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+}
+// temporary call to addHistory
+addHistory('UserID-0');
+addHistory('UserID-1');
+//function to populate search-history element for the userID provided 
+function populateSearchHistory(pUserID) {
+    log('in populateSearchHistory userID : ' + pUserID);
+    database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
+        // get all the child elements
+        var cnt = 0;
+        if (data.val() != undefined) {
+            var child = data.val()[cnt];
+            // loop to find all the search history
+            var child = data.val()[cnt];
+            while (child != undefined) {
+                var altered;
+                if (child.altered === 'Yes') {
+                    altered = 'altered-Yes';
+                } else {
+                    altered = 'altered-No';
                 }
                 var searchText = child.breed + ' ' + child.gender + ' ' + child.color + ' ' + child.type + ' ' + altered + ' in ' + child.location.state + ' ' + child.location.city + ' ' + child.location.zip;
                 var newATag = $('<a></a>');
@@ -241,6 +225,37 @@ function search(searchPetObj) {
 }
 
 search(searchPetObj);
+// On click function to pull city names based on state
+$(document).on("click", "#dropdown-state", function(){
+
+    // Ajax pull for json file
+    $.ajax({
+        type: "GET",
+        url:"./assets/media/csvjson.json",
+        }).then((resp)=>{
+            console.log(resp);
+
+            // Delete child elements of city dropdown
+            $("#dropdown-city").empty();
+
+            // Add placeholder to city dropdown
+            $("#dropdown-city").append("<option>Choose...</option>");
+
+            // capture value of state value
+            var stateVal = $("#dropdown-state").val();
+            console.log(stateVal);
+
+            $.each(resp, function(index, value) {
+                if( resp[index].state_id === stateVal ){
+
+                    // Set variables to create new options for city
+                    var cityDropdown = $("#dropdown-city");
+                    var newCityOption = $("<option>");
+                    
+                    // Append new options for city for each city in the state
+                    cityDropdown.append(newCityOption.text(resp[index].city).attr({
+                        value: resp[index].state_id,
+                    }))
             })
     });
 });
