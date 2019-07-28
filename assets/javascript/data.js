@@ -8,7 +8,13 @@
 
 var log = console.log;
 
-log('start');
+var client_id = "yzqDLCfr7QRSBvCjfZglD8857s37RlkBOYBOgfurRqSksECjcb"; //Apikey
+var client_secret = "JDx7nY5jRhNXP0UPmG7YbwE2OSqlOvSrB0urVCab"; //Secret 
+
+//placeholder for TOKEN, obtained from  'refreshToken' function;
+var accessToken = "";
+var refreshTokenAttempted = false;
+
 
 // Create a firebase object
 var firebaseConfig = {
@@ -119,6 +125,112 @@ $(document).on("click", "#dropdown-state", function(){
                         value: resp[index].state_id,
                     }))
                 }
+                var searchText = child.breed + ' ' + child.gender + ' ' + child.color + ' ' + child.type + ' ' + altered + ' in ' + child.location.state + ' ' + child.location.city + ' ' + child.location.zip;
+                var newATag = $('<a></a>');
+                newATag.href = searchText;
+                newATag.text(searchText);
+                // Add the search history to the page
+                $('#search-history').prepend(newATag);
+                cnt++
+                child = data.val()[cnt];
+            }
+        }
+    })
+};
+// temporary call to populateSearchHistory 
+populateSearchHistory('UserID-0');
+populateSearchHistory('UserID-1');
+
+// Get information from petfinder api
+// //Get access token function
+
+function refreshToken() {
+    refreshTokenAttempted = true;
+    log('in refreshToken');
+    $.ajax({
+        url: `https://api.petfinder.com/v2/oauth2/token`,
+        method: "POST",
+        data: {
+            "grant_type": "client_credentials",
+            "client_id": "yzqDLCfr7QRSBvCjfZglD8857s37RlkBOYBOgfurRqSksECjcb",
+            "client_secret": "dBIHXQItrvUgQcqFNhxtg5juvsDfreot1EB3mvqY"
+        }
+    }).then(function (response) {
+        log('in ajax call');
+        log('in refereshToken response : ', response);
+        accessToken = response.access_token;
+        console.log("accessToken after set from refreshToken: ", accessToken);
+        search(searchPetObj);
+
+    }).catch(function (err) {
+        //some kind of console.log that tells us more about the error
+    });
+}
+
+var searchPetObj = {
+    type: 'dog',
+    breed: 'boxer',
+    color: 'brown',
+    gender: 'female',
+    location: {
+        city: 'Atlanta',
+        state: 'GA',
+        zip: '30001'
+    }
+};
+function search(searchPetObj) {
+    log(searchPetObj);
+    //  refreshToken();
+    // set up a a query variable
+    var queryURL = "https://cors-anywhere.herokuapp.com/https://api.petfinder.com/v2/animals";
+    // add parameteres to the queryURL
+    queryURL = queryURL + '?';
+    // Add type of animal
+    queryURL = queryURL + 'type=' + searchPetObj.type;
+    // // Add breed
+     queryURL = queryURL + '&breeds.primary=' + searchPetObj.breed;
+    // // Add location
+    // //// Add city
+    // queryURL = queryURL + '&contact.address.city=' + searchPetObj.location.city;
+    // //// Add state
+    // queryURL = queryURL + '&contact.address.state=' + searchPetObj.location.state;
+    // //// Add zipcode
+    // queryURL = queryURL + '&contact.address.postcode=' + searchPetObj.location.zip;
+
+    log('in search')
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        }
+    }).then(function (response) {
+        log('in ajax - search');
+        log(response);
+        // loop through animals array to add more filters 
+        $(response).each(function(animal){
+            // Check the breed
+            // if(animal.breeds.primary === searchPetObj.breed){
+            //     // Check gender
+            //     if(animals.gender==='female'){
+            //         // Check if the primary color is not null
+            //         if(animal.colors.primary!=''){
+                        log('selected animal');
+            //         }
+            //     }
+            // }
+        })
+        
+    }).catch(function (err) {
+        console.log("ERROR! ", err);
+        // call refreshtoken if the token is expired or asked for the first time
+        if (err.responseJSON.status === 401 && !refreshTokenAttempted) {
+            refreshToken();
+        }
+    });
+}
+
+search(searchPetObj);
             })
     });
 });
