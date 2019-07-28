@@ -358,3 +358,12 @@ $(document).on("click", "#dropdown-state", function(){
             })
     });
 });
+
+
+
+// On click event for submit
+$(document).on("click", "submit-search", function(){
+    event.preventDefault();
+
+    
+})
