@@ -189,7 +189,7 @@
                                             <label for="dropdown-city">City</label>
                                             <select id="dropdown-city" class="form-control">
                                                 <option selected>Choose...</option>
-                                                <option>...</option>
+                                                
                                             </select>
                                         </div>
                                     
@@ -312,14 +312,30 @@ $.ajax({
             
     });
 
-    $(document).on('click', 'dropdown-city', function(){
+    $(document).on("click", "#dropdown-state", function(){
         $.ajax({
             type: "GET",
             url:"./assets/media/csvjson.json",
             }).then((resp)=>{
                 console.log(resp);
 
-                
+                $("#dropdown-city").empty();
+                $("#dropdown-city").append("<option>Choose...</option>");
+
+                var stateVal = $("#dropdown-state").val();
+                console.log(stateVal);
+
+                $.each(resp, function(index, value) {
+                    if( resp[index].state_id === stateVal ){
+
+                        var cityDropdown = $("#dropdown-city");
+                        var newCityOption = $("<option>");
+                        
+                        cityDropdown.append(newCityOption.text(resp[index].city,).attr({
+                            value: resp[index].state_id,
+                        }))
+                    }
+                })
         });
     });
 
