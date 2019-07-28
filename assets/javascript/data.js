@@ -88,13 +88,37 @@ database.ref().on("child_added",function(data){
 })
 
 // On click function to pull city namesb based on state
-// $(document).on('click', 'dropdown-city', function(){
-//     $.ajax({
-//         type: "GET",
-//         url:"./assets/media/csvjson.json",
-//         }).then((resp)=>{
-//             console.log(resp);
+$(document).on("click", "#dropdown-state", function(){
 
-            
-//     });
-// });
+    // Ajax pull for json file
+    $.ajax({
+        type: "GET",
+        url:"./assets/media/csvjson.json",
+        }).then((resp)=>{
+            console.log(resp);
+
+            // Delete child elements of city dropdown
+            $("#dropdown-city").empty();
+
+            // Add placeholder to city dropdown
+            $("#dropdown-city").append("<option>Choose...</option>");
+
+            // capture value of state value
+            var stateVal = $("#dropdown-state").val();
+            console.log(stateVal);
+
+            $.each(resp, function(index, value) {
+                if( resp[index].state_id === stateVal ){
+
+                    // Set variables to create new options for city
+                    var cityDropdown = $("#dropdown-city");
+                    var newCityOption = $("<option>");
+                    
+                    // Append new options for city for each city in the state
+                    cityDropdown.append(newCityOption.text(resp[index].city).attr({
+                        value: resp[index].state_id,
+                    }))
+                }
+            })
+    });
+});
