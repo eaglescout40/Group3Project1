@@ -86,3 +86,11 @@ var firebaseConfig = {
 database.ref().on("child_added",function(data){
     log(data.val());
 })
+
+$(document).on('click', )
+$.ajax({
+    type: "GET",
+    url:"./assets/media/csvjson.json",
+    }).then((resp)=>{
+        console.log(resp);
+});
