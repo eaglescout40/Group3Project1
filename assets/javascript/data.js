@@ -7,7 +7,9 @@
 // // // // function to encrypt the password  
 
 var log = console.log;
-//log('start');
+
+log('start');
+
 // Create a firebase object
 var firebaseConfig = {
     apiKey: "AIzaSyBXZSA7zp8NKte4tg9zlQTCafnd8M4KUvI",
@@ -17,131 +19,106 @@ var firebaseConfig = {
     storageBucket: "",
     messagingSenderId: "169074872966",
     appId: "1:169074872966:web:3cfd0a22c82878cc"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// create a database ref variable
-var database = firebase.database();
-// temporary code to create initial data
-var usersObjArray =
-    [
-        {
-            name: 'ABC',
-            address: '123 street, Cumming, GA',
-            email: 'a@b.com',
-            petPreference: {
-                type: 'dog', breed: 'boxer', gender: 'female', color: 'brown', altered: 'Yes'
-            },
-            searchHistory:
-                [{
-                    type: 'dog',
-                    breed: 'boxer',
-                    gender: 'female',
-                    color: 'brown',
-                    altered: 'Yes',
-                    location: {
-                        zip: '30001',
-                        city: 'Atlanta',
-                        state: 'GA'
-                    }
-                },
-                {
-                    type: 'cat',
-                    breed: 'domestic',
-                    gender: 'female',
-                    color: 'orange',
-                    altered: 'Yes',
-                    location: {
-                        zip: '30001',
-                        city: 'Atlanta',
-                        state: 'GA'
-                    }
-                }]
-        },
-        {
-            name: 'PQR',
-            address: '456 street, Chicago, IL',
-            email: 'a@b.com',
-            petPreference: {
-                type: 'cat', breed: 'Tabby', gender: 'female', color: 'Orange', altered: 'Yes'
-            }
-        }
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  
+  var database=firebase.database();
 
-    ];
-function addRow(pUsersObjArray) {
-    // open a loop on the objects array
-    for (var i = 0; i < pUsersObjArray.length; i++) {
-        // add a row to the database
-        database.ref('/UserID-' + i).set(
-            pUsersObjArray[i]
-        );
-    }
-}
-// temporary call to create initial data
-addRow(usersObjArray);
-// temporary searchHistory object    
-var searchHistoryObj = {
-    type: 'cat',
-    breed: 'bombay cat',
-    gender: 'male',
-    color: 'black',
-    altered: 'Yes',
-    location: {
-        zip: '30022',
-        city: 'Alpharetta',
-        state: 'GA'
-    }
-};
-// Function to add a search history
-function addHistory(pUserID) {
-    var cnt = 0;
-    database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
-        //loop and find the next element of array to use
-        if (data.val() != undefined) {
-            var child = data.val()[cnt];
-            if (child != undefined) {
-                while (child != undefined) {
-                    cnt++
-                    child = data.val()[cnt];
-                }
-            }
+  var usersObjArray= 
+  [
+  {
+    name:'ABC',  
+    address:'123 street, Cumming, GA',
+    email:'a@b.com',
+    petPreference : {
+        type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
+      },
+    "searchCriterion-1":{
+        searchCriterionPet:{
+            type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
+        },
+        searchCriterionLocation:{
+            zip:'30001',city:'Atlanta',state:'GA'
         }
+    },
+    "searchCriterion-2":{
+        searchCriterionPet:{
+            type:'dog',breed:'boxer',gender:'female',color:'black',altered:'Yes'
+        },
+        searchCriterionLocation:{
+            zip:'30022',city:'Johns Creek',state:'GA'
+        }
+    }
+    
+  },    
+  {
+    name:'PQR',  
+    address:'456 street, Chicago, IL',
+    email:'a@b.com',
+    petPreference : {
+        type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
+      }
+  }
+
+  ];
+
+//   log('after creating array');
+//   log('name: '+usersObjArray[0].name)
+  
+  function addRow(pUsersObjArray){
+        //log('in addRow');
+        // open a loop on the objects array
+        for(var i=0;i<pUsersObjArray.length;i++){
+            //log('current index : '+i);
+            //log('address: '+pUsersObjArray[i].address);
+            // add a row to the database
+            database.ref('/UserID-'+i).set(
+                pUsersObjArray[i]
+            );
+            //log('after database set');
+        }
+  }
+
+  addRow(usersObjArray);
+
+database.ref().on("child_added",function(data){
+    log(data.val());
+})
+
+// On click function to pull city namesb based on state
+$(document).on("click", "#dropdown-state", function(){
+
+    // Ajax pull for json file
+    $.ajax({
+        type: "GET",
+        url:"./assets/media/csvjson.json",
+        }).then((resp)=>{
+            console.log(resp);
+
+            // Delete child elements of city dropdown
+            $("#dropdown-city").empty();
+
+            // Add placeholder to city dropdown
+            $("#dropdown-city").append("<option>Choose...</option>");
+
+            // capture value of state value
+            var stateVal = $("#dropdown-state").val();
+            console.log(stateVal);
+
+            $.each(resp, function(index, value) {
+                if( resp[index].state_id === stateVal ){
+
+                    // Set variables to create new options for city
+                    var cityDropdown = $("#dropdown-city");
+                    var newCityOption = $("<option>");
+                    
+                    // Append new options for city for each city in the state
+                    cityDropdown.append(newCityOption.text(resp[index].city).attr({
+                        value: resp[index].state_id,
+                    }))
+                }
+            })
     });
-    // Add search history to the user
-    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
-}
-// temporary call to addHistory
-addHistory('UserID-0');
-addHistory('UserID-1');
-//function to populate search-history element for the userID provided 
-function populateSearchHistory(pUserID) {
-    //log('in populateSearchHistory userID : ' + pUserID);
-    database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
-        // get all the child elements
-        var cnt = 0;
-        if (data.val() != undefined) {
-            var child = data.val()[cnt];
-            // loop to find all the search history
-            var child = data.val()[cnt];
-            while (child != undefined) {
-                var altered;
-                if (child.altered === 'Yes') {
-                    altered = 'altered-Yes';
-                } else {
-                    altered = 'altered-No';
-                }
-                var searchText = child.breed + ' ' + child.gender + ' ' + child.color + ' ' + child.type + ' ' + altered + ' in ' + child.location.state + ' ' + child.location.city + ' ' + child.location.zip;
-                var newATag = $('<a></a>');
-                newATag.href = searchText;
-                newATag.text(searchText);
-                // Add the search history to the page
-                $('#search-history').prepend(newATag);
-                cnt++
-                child = data.val()[cnt];
-            }
-        }
-    })
-};
-// temporary call to populateSearchHistory 
-populateSearchHistory('UserID-0');
-populateSearchHistory('UserID-1');
+});
