@@ -1,1 +1,6 @@
-This is empty right now.
+#random-image {
+    min-height: 200px, !important;
+    width: 100%;
+    border: 1px solid black
+}
+
