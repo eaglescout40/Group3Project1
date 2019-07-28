@@ -32,10 +32,11 @@ $("button.btn-info").on("click", function(e) {
       //console.log('hi')
     }
     
-    //    else if ((zip === "Choose...") ) {
-    //     //console.log('hi')
-    //      $(".frmErrors")
-    //       .text("The form is not complete")
-    //       .show().fadeIn();
-    //   }
+        if (isNaN(zip)) {
+          return 'Not a Number!';
+        }
+        //return x * 1000;
+      
+      
+       
   });
