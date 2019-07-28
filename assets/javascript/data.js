@@ -8,89 +8,87 @@
 
 var log = console.log;
 
-log('start');
+// log('start');
 
-// Create a firebase object
-var firebaseConfig = {
-    apiKey: "AIzaSyBXZSA7zp8NKte4tg9zlQTCafnd8M4KUvI",
-    authDomain: "group3project1-2019-07.firebaseapp.com",
-    databaseURL: "https://group3project1-2019-07.firebaseio.com",
-    projectId: "group3project1-2019-07",
-    storageBucket: "",
-    messagingSenderId: "169074872966",
-    appId: "1:169074872966:web:3cfd0a22c82878cc"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// // Create a firebase object
+// var firebaseConfig = {
+//     apiKey: "AIzaSyBXZSA7zp8NKte4tg9zlQTCafnd8M4KUvI",
+//     authDomain: "group3project1-2019-07.firebaseapp.com",
+//     databaseURL: "https://group3project1-2019-07.firebaseio.com",
+//     projectId: "group3project1-2019-07",
+//     storageBucket: "",
+//     messagingSenderId: "169074872966",
+//     appId: "1:169074872966:web:3cfd0a22c82878cc"
+//   };
+//   // Initialize Firebase
+//   firebase.initializeApp(firebaseConfig);
   
   
-  var database=firebase.database();
+//   var database=firebase.database();
 
-  var usersObjArray= 
-  [
-  {
-    name:'ABC',  
-    address:'123 street, Cumming, GA',
-    email:'a@b.com',
-    petPreference : {
-        type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
-      },
-    "searchCriterion-1":{
-        searchCriterionPet:{
-            type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
-        },
-        searchCriterionLocation:{
-            zip:'30001',city:'Atlanta',state:'GA'
-        }
-    },
-    "searchCriterion-2":{
-        searchCriterionPet:{
-            type:'dog',breed:'boxer',gender:'female',color:'black',altered:'Yes'
-        },
-        searchCriterionLocation:{
-            zip:'30022',city:'Johns Creek',state:'GA'
-        }
-    }
+//   var usersObjArray= 
+//   [
+//   {
+//     name:'ABC',  
+//     address:'123 street, Cumming, GA',
+//     email:'a@b.com',
+//     petPreference : {
+//         type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
+//       },
+//     "searchCriterion-1":{
+//         searchCriterionPet:{
+//             type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
+//         },
+//         searchCriterionLocation:{
+//             zip:'30001',city:'Atlanta',state:'GA'
+//         }
+//     },
+//     "searchCriterion-2":{
+//         searchCriterionPet:{
+//             type:'dog',breed:'boxer',gender:'female',color:'black',altered:'Yes'
+//         },
+//         searchCriterionLocation:{
+//             zip:'30022',city:'Johns Creek',state:'GA'
+//         }
+//     }
     
-  },    
-  {
-    name:'PQR',  
-    address:'456 street, Chicago, IL',
-    email:'a@b.com',
-    petPreference : {
-        type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
-      }
-  }
+//   },    
+//   {
+//     name:'PQR',  
+//     address:'456 street, Chicago, IL',
+//     email:'a@b.com',
+//     petPreference : {
+//         type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
+//       }
+//   }
 
-  ];
+//   ];
 
-//   log('after creating array');
-//   log('name: '+usersObjArray[0].name)
+// //   log('after creating array');
+// //   log('name: '+usersObjArray[0].name)
   
-  function addRow(pUsersObjArray){
-        //log('in addRow');
-        // open a loop on the objects array
-        for(var i=0;i<pUsersObjArray.length;i++){
-            //log('current index : '+i);
-            //log('address: '+pUsersObjArray[i].address);
-            // add a row to the database
-            database.ref('/UserID-'+i).set(
-                pUsersObjArray[i]
-            );
-            //log('after database set');
-        }
-  }
+//   function addRow(pUsersObjArray){
+//         //log('in addRow');
+//         // open a loop on the objects array
+//         for(var i=0;i<pUsersObjArray.length;i++){
+//             //log('current index : '+i);
+//             //log('address: '+pUsersObjArray[i].address);
+//             // add a row to the database
+//             database.ref('/UserID-'+i).set(
+//                 pUsersObjArray[i]
+//             );
+//             //log('after database set');
+//         }
+//   }
 
-  addRow(usersObjArray);
+//   addRow(usersObjArray);
 
-database.ref().on("child_added",function(data){
-    log(data.val());
-})
+// database.ref().on("child_added",function(data){
+//     log(data.val());
+// })
 
 
 
-// Get input of animal type
-// var selectedAnimalType = $("#animal-type-select").text();
 
 // Dog breed array
 var breedArray = ['Blue Lacy',
@@ -298,7 +296,9 @@ var breedArray = ['Blue Lacy',
 
 // Right dog breed array to options of animal breed dropdown when dog is selected in animal type
 $(document).on("click", "#animal-type-select", function(){
-    
+    // Get input of animal type
+    var selectedAnimalType = $("#animal-type-select").val();
+
     console.log(selectedAnimalType);
 
     // Delete child elements of breed dropdown
@@ -309,6 +309,8 @@ $(document).on("click", "#animal-type-select", function(){
 
     if( selectedAnimalType === "dog" ){
 
+        log(selectedAnimalType)
+
         $.each(breedArray, function(index, value) {
 
             // Set variables to create new options for city
@@ -316,12 +318,9 @@ $(document).on("click", "#animal-type-select", function(){
             var newBreedOption = $("<option>");
             
             // Append new options for city for each city in the state
-            breedDropdown.append(newBreedOption.text(breedArray[i]));
+            breedDropdown.append(newBreedOption.text(breedArray.sort()[index]));
         })
-    } else {
-        console.log(selectedAnimalType);
-        
-    }
+    } 
 })
 
 // On click function to pull city namesb based on state
