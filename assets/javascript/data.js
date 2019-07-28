@@ -41,23 +41,6 @@ var firebaseConfig = {
     petPreference : {
         type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
       },
-    "searchCriterion-1":{
-        searchCriterionPet:{
-            type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
-        },
-        searchCriterionLocation:{
-            zip:'30001',city:'Atlanta',state:'GA'
-        }
-    },
-    "searchCriterion-2":{
-        searchCriterionPet:{
-            type:'dog',breed:'boxer',gender:'female',color:'black',altered:'Yes'
-        },
-        searchCriterionLocation:{
-            zip:'30022',city:'Johns Creek',state:'GA'
-        }
-    }
-    
   },    
   {
     name:'PQR',  
@@ -133,10 +116,10 @@ $(document).on("click", "#dropdown-state", function(){
                 $('#search-history').prepend(newATag);
                 cnt++
                 child = data.val()[cnt];
-            }
-        }
+            })
+        })
     })
-};
+
 // temporary call to populateSearchHistory 
 populateSearchHistory('UserID-0');
 populateSearchHistory('UserID-1');
@@ -231,6 +214,4 @@ function search(searchPetObj) {
 }
 
 search(searchPetObj);
-            })
-    });
-});
+
