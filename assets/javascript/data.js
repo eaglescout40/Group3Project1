@@ -15,6 +15,7 @@ var client_secret = "JDx7nY5jRhNXP0UPmG7YbwE2OSqlOvSrB0urVCab"; //Secret
 var accessToken = "";
 var refreshTokenAttempted = false;
 
+var foundPet=false;
 
 // Create a firebase object
 var firebaseConfig = {
@@ -95,16 +96,51 @@ var usersObjArray =
             );
             //log('after database set');
         }
+    
+    // Add search history to the user
+    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+};
+
+// ----- Added from old branch
+// temporary searchHistory object    
+var searchHistoryObj = {
+    type: 'cat',
+    breed: 'bombay cat',
+    gender: 'male',
+    color: 'black',
+    altered: 'Yes',
+    location: {
+        zip: '30022',
+        city: 'Alpharetta',
+        state: 'GA'
+    }
+};
+// Function to add a search history
+function addHistory(pUserID) {
+    var cnt = 0;
+    database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
+        //loop and find the next element of array to use
+        if (data.val() != undefined) {
+            var child = data.val()[cnt];
+            if (child != undefined) {
+                while (child != undefined) {
+                    cnt++
+                    child = data.val()[cnt];
+                }
+            }
+        }
     });
     // Add search history to the user
     database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
 }
+// --- end of old branch
+
 // temporary call to addHistory
 addHistory('UserID-0');
 addHistory('UserID-1');
 //function to populate search-history element for the userID provided 
 function populateSearchHistory(pUserID) {
-    log('in populateSearchHistory userID : ' + pUserID);
+    //log('in populateSearchHistory userID : ' + pUserID);
     database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
         // get all the child elements
         var cnt = 0;
@@ -140,7 +176,7 @@ populateSearchHistory('UserID-1');
 
 function refreshToken() {
     refreshTokenAttempted = true;
-    log('in refreshToken');
+    //log('in refreshToken');
     $.ajax({
         url: `https://api.petfinder.com/v2/oauth2/token`,
         method: "POST",
@@ -150,10 +186,10 @@ function refreshToken() {
             "client_secret": "dBIHXQItrvUgQcqFNhxtg5juvsDfreot1EB3mvqY"
         }
     }).then(function (response) {
-        log('in ajax call');
-        log('in refereshToken response : ', response);
+        //log('in ajax call');
+        //log('in refereshToken response : ', response);
         accessToken = response.access_token;
-        console.log("accessToken after set from refreshToken: ", accessToken);
+        //log("accessToken after set from refreshToken: ", accessToken);
         search(searchPetObj);
 
     }).catch(function (err) {
@@ -163,35 +199,25 @@ function refreshToken() {
 
 var searchPetObj = {
     type: 'dog',
-    breed: 'boxer',
-    color: 'brown',
+    breed: 'Australian Shepherd',
+    color: 'Tricolor (Brown, Black, & White)',
     gender: 'female',
     location: {
-        city: 'Atlanta',
-        state: 'GA',
-        zip: '30001'
+        city: 'Nashville',
+        state: 'TN',
+        zip: '37201'
     }
 };
 function search(searchPetObj) {
-    log(searchPetObj);
-    //  refreshToken();
+    log('searchPetObj ',searchPetObj);
+     
     // set up a a query variable
     var queryURL = "https://cors-anywhere.herokuapp.com/https://api.petfinder.com/v2/animals";
     // add parameteres to the queryURL
     queryURL = queryURL + '?';
     // Add type of animal
     queryURL = queryURL + 'type=' + searchPetObj.type;
-    // // Add breed
-     queryURL = queryURL + '&breeds.primary=' + searchPetObj.breed;
-    // // Add location
-    // //// Add city
-    // queryURL = queryURL + '&contact.address.city=' + searchPetObj.location.city;
-    // //// Add state
-    // queryURL = queryURL + '&contact.address.state=' + searchPetObj.location.state;
-    // //// Add zipcode
-    // queryURL = queryURL + '&contact.address.postcode=' + searchPetObj.location.zip;
-
-    log('in search')
+    
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -200,20 +226,45 @@ function search(searchPetObj) {
         }
     }).then(function (response) {
         log('in ajax - search');
-        log(response);
+        //log('in search ajax animals ',result);
         // loop through animals array to add more filters 
-        $(response).each(function(animal){
+        var result=response.animals;
+        log('result:',result);
+        $(result).each(function(index){
+            log('Breed ',result[index].breeds.primary.toUpperCase());
+            //log('parameter breed ',searchPetObj.breed.toUpperCase());
+            //log('selected animal breed ',result[index].breeds.primary.toUpperCase());
             // Check the breed
-            // if(animal.breeds.primary === searchPetObj.breed){
-            //     // Check gender
-            //     if(animals.gender==='female'){
-            //         // Check if the primary color is not null
-            //         if(animal.colors.primary!=''){
-                        log('selected animal');
-            //         }
-            //     }
-            // }
+             if(result[index].breeds.primary.toUpperCase() === searchPetObj.breed.toUpperCase()){
+                log('selected animal breed ',result[index].breeds.primary.toUpperCase());
+                // now check for color
+                if(result[index].colors.primary.toUpperCase() === searchPetObj.color.toUpperCase()){
+                    //now check for gender
+                    if(result[index].gender.toUpperCase() === searchPetObj.gender.toUpperCase()){
+                        // check location
+                        //Check state
+                        if(result[index].contact.address.state.toUpperCase() === searchPetObj.location.state.toUpperCase()){
+                            //Check city
+                            if(result[index].contact.address.city.toUpperCase() === searchPetObj.location.city.toUpperCase()){
+                                //check zip
+                                log('result[index].contact.address.postcode',result[index].contact.address.postcode);
+                                if(result[index].contact.address.postcode.toUpperCase() === searchPetObj.location.zip.toUpperCase()){
+                                    log('found the dog');
+                                    foundPet=true;
+                                    var petImage=$("<img></img>");
+                                    petImage.attr('src',result[index].photos[0].small);
+                                    $("#result-list").prepend(petImage);
+                                }
+                            }
+                        }
+                    }
+                }
+
+             }
         })
+        if(!foundPet){
+            log('did not find the pet');
+        }
         
     }).catch(function (err) {
         console.log("ERROR! ", err);
@@ -256,6 +307,7 @@ $(document).on("click", "#dropdown-state", function(){
                     cityDropdown.append(newCityOption.text(resp[index].city).attr({
                         value: resp[index].state_id,
                     }))
+                }
             })
-    });
-});
+        })
+});    
