@@ -33,10 +33,12 @@ $("button.btn-info").on("click", function(e) {
     }
     
         if (isNaN(zip)) {
-          return 'Not a Number!';
+          //return 'Not a Number!';
+          $(".frmErrors")
+          .text('Not a Number!')
+          .fadeIn().fadeOut(5000);
         }
-        //return x * 1000;
-      
+        
       
        
   });
