@@ -25,22 +25,49 @@ var firebaseConfig = {
     storageBucket: "",
     messagingSenderId: "169074872966",
     appId: "1:169074872966:web:3cfd0a22c82878cc"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  
-  var database=firebase.database();
 
-  var usersObjArray= 
-  [
-  {
-    name:'ABC',  
-    address:'123 street, Cumming, GA',
-    email:'a@b.com',
-    petPreference : {
-        type:'dog',breed:'boxer',gender:'female',color:'brown',altered:'Yes'
-      },
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// create a database ref variable
+var database = firebase.database();  
+// temporary code to create initial data
+var usersObjArray =
+    [
+        {
+            name: 'ABC',
+            address: '123 street, Cumming, GA',
+            email: 'a@b.com',
+            petPreference: {
+                type: 'dog', breed: 'boxer', gender: 'female', color: 'brown', altered: 'Yes'
+            },
+            searchHistory:
+                [{
+                    type: 'dog',
+                    breed: 'boxer',
+                    gender: 'female',
+                    color: 'brown',
+                    altered: 'Yes',
+                    location: {
+                        zip: '30001',
+                        city: 'Atlanta',
+                        state: 'GA'
+                    }
+                },
+                {
+                    type: 'cat',
+                    breed: 'domestic',
+                    gender: 'female',
+                    color: 'orange',
+                    altered: 'Yes',
+                    location: {
+                        zip: '30001',
+                        city: 'Atlanta',
+                        state: 'GA'
+                    }
+                }]
+
+    
   },    
   {
     name:'PQR',  
