@@ -27,10 +27,13 @@ var firebaseConfig = {
     appId: "1:169074872966:web:3cfd0a22c82878cc"
 
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 // create a database ref variable
 var database = firebase.database();  
+
 // temporary code to create initial data
 var usersObjArray =
     [
@@ -41,95 +44,114 @@ var usersObjArray =
             petPreference: {
                 type: 'dog', breed: 'boxer', gender: 'female', color: 'brown', altered: 'Yes'
             },
+
             searchHistory:
-                [{
-                    type: 'dog',
-                    breed: 'boxer',
-                    gender: 'female',
-                    color: 'brown',
-                    altered: 'Yes',
-                    location: {
-                        zip: '30001',
-                        city: 'Atlanta',
-                        state: 'GA'
+                [
+                    {
+                        type: 'dog',
+                        breed: 'boxer',
+                        gender: 'female',
+                        color: 'brown',
+                        altered: 'Yes',
+                        location: {
+                            zip: '30001',
+                            city: 'Atlanta',
+                            state: 'GA'
+                        }
+                    },
+
+                    {
+                        type: 'cat',
+                        breed: 'domestic',
+                        gender: 'female',
+                        color: 'orange',
+                        altered: 'Yes',
+                        location: {
+                            zip: '30001',
+                            city: 'Atlanta',
+                            state: 'GA'
+                        }
                     }
-                },
-                {
-                    type: 'cat',
-                    breed: 'domestic',
-                    gender: 'female',
-                    color: 'orange',
-                    altered: 'Yes',
-                    location: {
-                        zip: '30001',
-                        city: 'Atlanta',
-                        state: 'GA'
-                    }
-                }]
+                ]
 
     
-  },    
-  {
-    name:'PQR',  
-    address:'456 street, Chicago, IL',
-    email:'a@b.com',
-    petPreference : {
-        type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
-      }
-  }
-
-  ];
+        },    
+        {
+            name:'PQR',  
+            address:'456 street, Chicago, IL',
+            email:'a@b.com',
+            petPreference : {
+                type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
+            }
+        }
+    ];
 
 //   log('after creating array');
 //   log('name: '+usersObjArray[0].name)
   
-  function addRow(pUsersObjArray){
-        //log('in addRow');
-        // open a loop on the objects array
-        for(var i=0;i<pUsersObjArray.length;i++){
-            //log('current index : '+i);
-            //log('address: '+pUsersObjArray[i].address);
-            // add a row to the database
-            database.ref('/UserID-'+i).set(
-                pUsersObjArray[i]
-            );
-            //log('after database set');
-        }
-    });
-    // Add search history to the user
-    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
-}
+function addRow(pUsersObjArray){
+
+    //log('in addRow');
+    // open a loop on the objects array
+    for(var i=0;i<pUsersObjArray.length;i++){
+
+        //log('current index : '+i);
+        //log('address: '+pUsersObjArray[i].address);
+
+        // add a row to the database
+        database.ref('/UserID-'+i).set(
+            pUsersObjArray[i]
+        );
+        //log('after database set');
+    }
+};
+
+// Aparna. This is throwing an error
+// Add search history to the user
+database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+
 // temporary call to addHistory
 addHistory('UserID-0');
 addHistory('UserID-1');
+
 //function to populate search-history element for the userID provided 
 function populateSearchHistory(pUserID) {
     log('in populateSearchHistory userID : ' + pUserID);
+
     database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
+
         // get all the child elements
         var cnt = 0;
         if (data.val() != undefined) {
             var child = data.val()[cnt];
+
             // loop to find all the search history
             var child = data.val()[cnt];
+
             while (child != undefined) {
                 var altered;
+
                 if (child.altered === 'Yes') {
                     altered = 'altered-Yes';
                 } else {
                     altered = 'altered-No';
                 }
+
                 var searchText = child.breed + ' ' + child.gender + ' ' + child.color + ' ' + child.type + ' ' + altered + ' in ' + child.location.state + ' ' + child.location.city + ' ' + child.location.zip;
                 var newATag = $('<a></a>');
+
                 newATag.href = searchText;
                 newATag.text(searchText);
+
                 // Add the search history to the page
                 $('#search-history').prepend(newATag);
+
                 cnt++
                 child = data.val()[cnt];
-            })
-        })
-    })
+            };
+        }
+    });
+};
 
 // temporary call to populateSearchHistory 
 populateSearchHistory('UserID-0');
@@ -140,7 +162,9 @@ populateSearchHistory('UserID-1');
 
 function refreshToken() {
     refreshTokenAttempted = true;
+
     log('in refreshToken');
+
     $.ajax({
         url: `https://api.petfinder.com/v2/oauth2/token`,
         method: "POST",
@@ -149,17 +173,21 @@ function refreshToken() {
             "client_id": "yzqDLCfr7QRSBvCjfZglD8857s37RlkBOYBOgfurRqSksECjcb",
             "client_secret": "dBIHXQItrvUgQcqFNhxtg5juvsDfreot1EB3mvqY"
         }
-    }).then(function (response) {
+    })
+    
+    .then(function (response) {
         log('in ajax call');
         log('in refereshToken response : ', response);
         accessToken = response.access_token;
         console.log("accessToken after set from refreshToken: ", accessToken);
         search(searchPetObj);
 
-    }).catch(function (err) {
+    })
+    
+    .catch(function (err) {
         //some kind of console.log that tells us more about the error
     });
-}
+};
 
 var searchPetObj = {
     type: 'dog',
@@ -198,7 +226,9 @@ function search(searchPetObj) {
         headers: {
             "Authorization": `Bearer ${accessToken}`
         }
-    }).then(function (response) {
+    })
+    
+    .then(function (response) {
         log('in ajax - search');
         log(response);
         // loop through animals array to add more filters 
@@ -215,7 +245,9 @@ function search(searchPetObj) {
             // }
         })
         
-    }).catch(function (err) {
+    })
+    
+    .catch(function (err) {
         console.log("ERROR! ", err);
         // call refreshtoken if the token is expired or asked for the first time
         if (err.responseJSON.status === 401 && !refreshTokenAttempted) {
@@ -225,6 +257,7 @@ function search(searchPetObj) {
 }
 
 search(searchPetObj);
+
 // On click function to pull city names based on state
 $(document).on("click", "#dropdown-state", function(){
 
@@ -232,7 +265,9 @@ $(document).on("click", "#dropdown-state", function(){
     $.ajax({
         type: "GET",
         url:"./assets/media/csvjson.json",
-        }).then((resp)=>{
+        })
+        
+        .then((resp)=>{
             console.log(resp);
 
             // Delete child elements of city dropdown
@@ -256,6 +291,7 @@ $(document).on("click", "#dropdown-state", function(){
                     cityDropdown.append(newCityOption.text(resp[index].city).attr({
                         value: resp[index].state_id,
                     }))
+                }
             })
-    });
-});
+        });
+})
