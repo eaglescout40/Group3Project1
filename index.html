@@ -8,19 +8,31 @@
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <!-- Google Maps API ---> 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ7W13E5gXJvM4oBksiaqf7wMb7t4_eHQ&callback=initMap"
-    type="text/javascript"></script>
-    
-    <!-- CDN 2 -->
+    <!-- Google Maps API -->
 
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ7W13E5gXJvM4oBksiaqf7wMb7t4_eHQ&callback=initMap"
+    type="text/javascript"></script> -->
+
+
+    <!-- CDN 2 -->
+        
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <script src="./assets/javascript/test.js"></script>
 
     <title>Find a Pet!</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script defer src="assets/javascript/data.js"></script>
+
 
 </head>
 
@@ -30,7 +42,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
 
         <!-- Logo -->
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="index.html"><img id="nav-pic" src="assets/images/pawprint.jpg" alt="Paw Print"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,13 +58,59 @@
 
                 <!-- Link 2 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="https://www.mypetneedsthat.com/best-pet-adoption-websites/">Link</a>
+                    <a class="nav-link" href="user.html">Account</a>
                 </li>
             </ul>
+
         </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Sign-in
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sign-in</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="login-email">Email address</label>
+                                <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" class="form-control" id="login-password" placeholder="Password">
+                            </div>
+
+                            <!-- <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="stay-signed-in">
+                                <label class="form-check-label" for="stay-signed-in">Stay signed in</label>
+                            </div> -->
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Log-in</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </nav>
 
-    <!-- MAdams -- Slideshow container -->
+        <!-- MAdams -- Slideshow container -->
 <div class="slideshow-container">
 
     <!-- Full-width images with number and caption text -->
@@ -127,22 +185,19 @@
           </div>
           
     <br>
+    
     <!-- Add an accordion with the search fields/options -->
     <div class="container mb-4">
     <div class="accordion border-bottom rounded" id="accordion-search">
         <div class="card">
             <div class="card-header" id="search-header">
                 <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
-                    id="accordion">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         Search here!
                     </button>
                 </h5>
             </div>
-            <div class="list-group" id="search-history-temp">
-                <!-----<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>--->
-            </div>
-
+        
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-search">
                 <div class="card-body">
                 
@@ -151,6 +206,7 @@
                     <!-- Search areas -->
 
                         <!-- Search form -->
+                        <div class = frmErrors></div>
                         <form>
 
                             <div id="search-left" class="row">
@@ -163,18 +219,19 @@
                                         <div class="form-group card-body col-md">
                                             <label for="animal-type-select">Animal type</label>
                                             <select class="form-control" id="animal-type-select">
-                                                <option selected>...</option>
-                                                <option>Any</option>
-                                                <option>Dog</option>
-                                                <option>Cat</option>
-                                                <option>Hampster</option>
-                                                <option>Snake</option>
+                                                <option selected>Choose...</option>
+                                                <option value="dog">Dog</option>
+                                                <option value="cat">Cat</option>
                                             </select>
                                         </div>
+
+                                        <!-- Add gender dropdown -->
+
+                                        <!-- Add color dropdown -->
                                         
                                         <!-- Form dropdown for animal breed -->
                                         <div class="form-group col-md">
-                                            <label for="exampleFormControlSelect1">Animal breed</label>
+                                            <label for="animal-breed">Animal breed</label>
                                             <select class="form-control" id="animal-breed">
                                                 <!-- Options to be added dynamically on selecting animal type -->
                                                 <option selected>...</option>
@@ -186,7 +243,57 @@
                                             <label for="dropdown-state">State</label>
                                             <select id="dropdown-state" class="form-control">
                                                 <option selected>Choose...</option>
-                                                <option>...</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="DC">District Of Columbia</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                                <option value="HI">Hawaii</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IN">Indiana</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="ME">Maine</option>
+                                                <option value="MD">Maryland</option>
+                                                <option value="MA">Massachusetts</option>
+                                                <option value="MI">Michigan</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="NH">New Hampshire</option>
+                                                <option value="NJ">New Jersey</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option value="NY">New York</option>
+                                                <option value="NC">North Carolina</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="OH">Ohio</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="PA">Pennsylvania</option>
+                                                <option value="RI">Rhode Island</option>
+                                                <option value="SC">South Carolina</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
                                             </select>
                                         </div>
                                         
@@ -196,7 +303,7 @@
                                             <label for="dropdown-city">City</label>
                                             <select id="dropdown-city" class="form-control">
                                                 <option selected>Choose...</option>
-                                                <option>...</option>
+                                                
                                             </select>
                                         </div>
                                     
@@ -218,7 +325,7 @@
                                         
                                         <div class="form-group card-body col-md">
                                             
-                                            Recent Search Hostory
+                                            Recent Search History
 
                                             <!-- Dynamically add these after searches are done -->
                                             <div class="list-group" id="search-history">
@@ -282,89 +389,23 @@
         <!-- Add more cards or go to the next row with class 'row' -->
         </div>
     </div>
-    </div>
+    <!--</div>-->
 
-
-    <!-- MAdams -- Google Maps widget here. On right of search results -->
-    <!--<div id="googleMap" style="width:100%;height:400px;"></div>
-
-<script>
-function myMap() {
-var mapProp= {
-  center:new google.maps.LatLng(33.9498, 83.3734),
-  zoom:5,
-};
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>-->
-    <!-- Map feature ??? -->
-    <!--<div class="google-map">
-        <div id="map">
-            Map
-            </div>-->
-            <!-- Search result list -->
-        
-        <!--<div id="map"></div>
-        <script src="js/google-map.js">
+    <!-- Add Google Maps widget here. On right of search results -->
     
-            function init() {
-            // the mapOptions object contains the information to initialise the map to how we want it
-                var mapOptions = {
-                    zoom: 14,
-                    center: new google.maps.LatLng(33.9498, 83.3734),
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                   
-                    panControl: false,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.SMALL,
-                    position: google.maps.ControlPosition.TOP_RIGHT
-                },
-                    mapTypeControl: true,
-                    mapTypeControlOptions: {
-                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                    position: google.maps.ControlPosition.TOP_LEFT
-                },
-                    scaleControl: true,
-                    scaleControlOptions: {
-                    position: google.maps.ControlPosition.TOP_CENTER
-                },
-                    streetViewControl: false,
-                    overviewMapControl: false
-                };
-                var venueMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-                }
-
-            function loadScript() {
-                var script = document.createElement('script');
-                    script.src = 'http://maps.googleapis.com/maps/api/js?sensor=false&callback=init';
-                    document.body.appendChild(script);
-                }
-
-            window.onload = loadScript;  -->
-
-        
+            
     
-        
-
-    </script>
-</div>
-
-    <!-- Pet Finder iframe - TO BE REMOVED -->
-    <!--<iframe style="width: 500px; height: 600px; margin: 0;" src="https://fpm.petfinder.com/petlist/petlist.cgi?shelter=ALL_GA&status=A&age=&limit=25&offset=0&animal=&title=&style=8&ref=1JWHb9c3FxbV9g_" width="500px" height="600px" hspace="0" vspace="0"  frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" bordercolor="#000000"></iframe>-->
          
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script defer src ="assets/javascript/app.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#config-web-app --->
-
     <script src="assets/javascript/data.js" type="text/javascript"></script>
-
 
     
 </body>

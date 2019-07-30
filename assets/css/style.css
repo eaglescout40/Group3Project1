@@ -139,7 +139,7 @@
   
   /* M.Adams -- Style the front side */
   .flip-box-front {
-    background-color: #bbb;
+    background-color: mediumseagreen;
     color: black;
   }
   
@@ -159,12 +159,30 @@
   border: 1px solid black;
 }
 
+#random-image {
+  min-height: 200px, !important;
+  width: 100%;
+  border: 1px solid black
+}
+
+.frmErrors{
+  color:red;
+  display: none;
+
+}
+#petContainer1 {
+  background: url(../images/ignasi_pattern_s.png);
+}
+
+#nav-pic {
+  max-width: 50px;
+}
   /* M.Adams -- This is the CSS for the Google Maps Container */
   /* M.Adams -- GOOGLE MAPS */
-.map
+/*.map
     {
         color: red;
         min-height: 1000px, !important;
         width: 50%;
         border: 50px solid black    
-    }
+    }*/
