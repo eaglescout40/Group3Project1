@@ -83,22 +83,23 @@ var usersObjArray =
 //   log('after creating array');
 //   log('name: '+usersObjArray[0].name)
   
-  function addRow(pUsersObjArray){
-        //log('in addRow');
-        // open a loop on the objects array
-        for(var i=0;i<pUsersObjArray.length;i++){
-            //log('current index : '+i);
-            //log('address: '+pUsersObjArray[i].address);
-            // add a row to the database
-            database.ref('/UserID-'+i).set(
-                pUsersObjArray[i]
-            );
-            //log('after database set');
-        }
-    });
-    // Add search history to the user
-    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
-}
+function addRow(pUsersObjArray){
+    //log('in addRow');
+    // open a loop on the objects array
+    for(var i=0;i<pUsersObjArray.length;i++){
+        //log('current index : '+i);
+        //log('address: '+pUsersObjArray[i].address);
+        // add a row to the database
+        database.ref('/UserID-'+i).set(
+            pUsersObjArray[i]
+        );
+        //log('after database set');
+    }
+};
+
+// Add search history to the user
+database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+
 // temporary call to addHistory
 addHistory('UserID-0');
 addHistory('UserID-1');
@@ -131,6 +132,7 @@ function populateSearchHistory(pUserID) {
         }
     })
 };
+
 // temporary call to populateSearchHistory 
 populateSearchHistory('UserID-0');
 populateSearchHistory('UserID-1');
@@ -239,7 +241,8 @@ $(document).on("click", "#dropdown-state", function(){
     $.ajax({
         type: "GET",
         url:"./assets/media/csvjson.json",
-        }).then((resp)=>{
+        })
+        .then((resp)=>{
             console.log(resp);
 
             // Delete child elements of city dropdown
@@ -263,8 +266,9 @@ $(document).on("click", "#dropdown-state", function(){
                     cityDropdown.append(newCityOption.text(resp[index].city).attr({
                         value: resp[index].state_id,
                     }))
+                }
             })
-    });
+        });
 });
 
 // Dog breed array
@@ -312,8 +316,8 @@ var breedArray = ['Blue Lacy',
     'Black and Tan Coonhound',
     'Black Russian Terrier',
     'Bloodhound',
-    'Bluetick Coonhound'
-    ,'Boerboel',
+    'Bluetick Coonhound',
+    'Boerboel',
     'Border Collie',
     'Border Terrier',
     'Borzoi',
