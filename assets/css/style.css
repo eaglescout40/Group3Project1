@@ -15,4 +15,7 @@
 
 #nav-pic {
     max-width: 50px;
+
+label.error{
+    color:red;
 }
