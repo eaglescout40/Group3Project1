@@ -104,11 +104,11 @@ function addRow(pUsersObjArray){
 };
 
 // Add search history to the user
-database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+// database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
 
 // temporary call to addHistory
-addHistory('UserID-0');
-addHistory('UserID-1');
+// addHistory('UserID-0');
+// addHistory('UserID-1');
 
 //function to populate search-history element for the userID provided 
 function populateSearchHistory(pUserID) {
@@ -500,6 +500,53 @@ var breedArray = ['Blue Lacy',
     'Yorkshire Terrier'
 ];
 
+var catArray = [
+    "Abyssinian"
+    ,"American Bobtail"
+    ,"American Curl"
+    ,"American Shorthair"
+    ,"American Wirehair"
+    ,"Balinese"
+    ,"Bengal"
+    ,"Birman"
+    ,"Bombay"
+    ,"British Shorthair"
+    ,"Burmese"
+    ,"Burmilla"
+    ,"Chartreux"
+    ,"Colorpoint Shorthair"
+    ,"Cornish Rex"
+    ,"Devon Rex"
+    ,"Egyptian Mau"
+    ,"European Burmese"
+    ,"Exotic"
+    ,"Havana Brown"
+    ,"Japanese Bobtail"
+    ,"Khao Manee"
+    ,"Korat"
+    ,"LaPerm"
+    ,"Lykoi"
+    ,"Maine Coon Cat"
+    ,"Manx"
+    ,"Norwegian Forest Cat"
+    ,"Ocicat"
+    ,"Oriental"
+    ,"Persian"
+    ,"Ragamuffin"
+    ,"Ragdoll"
+    ,"Russian Blue"
+    ,"Scottish Fold"
+    ,"Selkirk Rex"
+    ,"Siamese"
+    ,"Siberian"
+    ,"Singapura"
+    ,"Somali"
+    ,"Sphynx"
+    ,"Tonkinese"
+    ,"Toybob"
+    ,"Turkish Angora"
+    ,"Turkish Van"
+]
 
 // Right dog breed array to options of animal breed dropdown when dog is selected in animal type
 $(document).on("click", "#animal-type-select", function(){
@@ -527,5 +574,20 @@ $(document).on("click", "#animal-type-select", function(){
             // Append new options for city for each city in the state
             breedDropdown.append(newBreedOption.text(breedArray.sort()[index]));
         })
-    } 
+
+    } else if( selectedAnimalType === "cat" ) {
+
+        log(selectedAnimalType)
+
+        $.each(catArray, function(index, value) {
+
+            // Set variables to create new options for city
+            var breedDropdown = $("#animal-breed");
+            var newBreedOption = $("<option>");
+            
+            // Append new options for city for each city in the state
+            breedDropdown.append(newBreedOption.text(catArray.sort()[index]));
+        })
+
+    }
 });
