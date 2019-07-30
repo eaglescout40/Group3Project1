@@ -354,7 +354,7 @@ $(document).on("click", "#dropdown-state", function () {
         $("#dropdown-city").empty();
 
         // Add placeholder to city dropdown
-        $("#dropdown-city").append("<option>Choose...</option>");
+        $("#dropdown-city").append("<option></option>");
 
         // capture value of state value
         var stateVal = $("#dropdown-state").val();
@@ -638,7 +638,7 @@ $(document).on("click", "#animal-type-select", function(){
     $("#animal-breed").empty();
 
     // Add placeholder to breed dropdown
-    $("#animal-breed").append("<option>Choose...</option>");
+    $("#animal-breed").append("<option></option>");
 
     if( selectedAnimalType === "dog" ){
 

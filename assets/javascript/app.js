@@ -40,13 +40,16 @@ $("button.btn-info").on("click", function(e) {
      //  }
     
     if(zip != " " ) {
-         if(zip != " " ) {if (isNaN(zip)) {
-                 //return 'Not a Number!';
-                 $(".frmErrors")
-                 .text('Not a Number!')
-                 .fadeIn().fadeOut(5000);
-               }
-         }
+
+      if(zip != " " ) {
+           
+        if (NaN(zip) === true) {
+          //return 'Not a Number!';
+          $(".frmErrors")
+          .text('Not a Number!')
+          .fadeIn().fadeOut(5000);
+        }
+      }
      }  
 
 
