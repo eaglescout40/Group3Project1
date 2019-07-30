@@ -106,6 +106,10 @@ label.error{
   background-color: #717171;
 }
 
+#nav-home, #nav-account {
+    background-color: transparent;
+}
+
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
@@ -174,13 +178,15 @@ label.error{
   } 
     
 /* This is the CSS for the Search banner */
-.container mb-4 {
+/* .container mb-4 {
 
 
-}
-.accordion {
+} */
+
+/* This is not needed */
+/* .accordion {
   border: 1px solid black;
-}
+} */
 
 #random-image {
   min-height: 200px, !important;
@@ -200,6 +206,7 @@ label.error{
 #nav-pic {
   max-width: 50px;
 }
+
   /* M.Adams -- This is the CSS for the Google Maps Container */
   /* M.Adams -- GOOGLE MAPS */
 /*.map
