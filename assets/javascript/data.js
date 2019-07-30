@@ -170,7 +170,7 @@ function populateSearchHistory(pUserID) {
                 }
 
                 var searchText = child.breed + ' ' + child.gender + ' ' + child.color + ' ' + child.type + ' ' + altered + ' in ' + child.location.state + ' ' + child.location.city + ' ' + child.location.zip;
-                var newATag = $('<a></a>');
+                var newATag = $('<a href="#" class="list-group-item list-group-item-action"></a>');
 
                 newATag.href = searchText;
                 newATag.text(searchText);
