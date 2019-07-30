@@ -3,3 +3,12 @@
     width: 100%;
     border: 1px solid black
 }
+
+.frmErrors{
+    color:red;
+    display: none;
+
+}
+#petContainer1 {
+    background: url(../images/ignasi_pattern_s.png);
+}
