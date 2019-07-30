@@ -12,3 +12,7 @@
 #petContainer1 {
     background: url(../images/ignasi_pattern_s.png);
 }
+
+#nav-pic {
+    max-width: 50px;
+}
