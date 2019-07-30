@@ -207,6 +207,14 @@ label.error{
   max-width: 50px;
 }
 
+#slideshow-container {
+    padding-top: 1%;
+}
+
+#accordion {
+    padding-top:1%;
+}
+
   /* M.Adams -- This is the CSS for the Google Maps Container */
   /* M.Adams -- GOOGLE MAPS */
 /*.map
