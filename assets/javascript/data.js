@@ -296,7 +296,7 @@ function search(searchPetObj) {
                                     var petImage = $("<img></img>");
                                     petImage.attr({src: result[index].photos[0].small});
                                     petImage.css('width','100%');
-                                    var aTag = $('<a href="' + result[index].url + '" class="btn btn-primary">More about me</a>');
+                                    var aTag = $('<a href="' + result[index].url + '"target="_blank" class="btn btn-primary">More about me</a>');
                                     aTag.css('width','100%','text-align','center');
                                     divCardBody.append(divH5);
                                     divCardBody.append(petImage);
