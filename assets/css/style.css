@@ -12,3 +12,8 @@
 #petContainer1 {
     background: url(../images/ignasi_pattern_s.png);
 }
+
+
+label.error{
+    color:red;
+}
