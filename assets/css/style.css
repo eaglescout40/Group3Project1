@@ -9,8 +9,16 @@
     display: none;
 
 }
-#petContainer1 {
+
+/* #petContainer1 {
     background: url(../images/ignasi_pattern_s.png);
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/ignasi_pattern_s.png");
+    background-size: cover;
 }
 
 #nav-pic {
