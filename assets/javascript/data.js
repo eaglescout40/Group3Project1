@@ -9,7 +9,7 @@
 var log = console.log;
 
 var client_id = "yzqDLCfr7QRSBvCjfZglD8857s37RlkBOYBOgfurRqSksECjcb"; //Apikey
-var client_secret = "JDx7nY5jRhNXP0UPmG7YbwE2OSqlOvSrB0urVCab"; //Secret 
+var client_secret = "cWIw3uSzKNsM1ERM767aaZjKC85bHLM3yKioUO0R"; //Secret 
 
 //placeholder for TOKEN, obtained from  'refreshToken' function;
 var accessToken = "";
@@ -17,6 +17,8 @@ var refreshTokenAttempted = false;
 
 var foundPet = false;
 var noOfResults = 0;
+
+var searchPetObj;
 
 // Create a firebase object
 var firebaseConfig = {
@@ -170,7 +172,7 @@ function populateSearchHistory(pUserID) {
                 }
 
                 var searchText = child.breed + ' ' + child.gender + ' ' + child.color + ' ' + child.type + ' ' + altered + ' in ' + child.location.state + ' ' + child.location.city + ' ' + child.location.zip;
-                var newATag = $('<a href="#" class="list-group-item list-group-item-action"></a>');
+                var newATag = $('<a href=" ' + 0 + ' " class="list-group-item list-group-item-action"></a>');
 
                 newATag.href = searchText;
                 newATag.text(searchText);
@@ -194,14 +196,14 @@ populateSearchHistory('UserID-1');
 
 function refreshToken() {
     refreshTokenAttempted = true;
-    //log('in refreshToken');
+    log('in refreshToken');
     $.ajax({
         url: `https://api.petfinder.com/v2/oauth2/token`,
         method: "POST",
         data: {
             "grant_type": "client_credentials",
-            "client_id": "yzqDLCfr7QRSBvCjfZglD8857s37RlkBOYBOgfurRqSksECjcb",
-            "client_secret": "dBIHXQItrvUgQcqFNhxtg5juvsDfreot1EB3mvqY"
+            "client_id": "HSiv25CyTBQ9aVGNS59i0l6ZaL0SEVfNgByTw2yHAs3IBYnpa9",
+            "client_secret": "7rtMjQFW1ZitAH0fObmE8w1vQJkkzIFOI0IvkhDh"
         }
     }).then(function (response) {
         //log('in ajax call');
@@ -217,21 +219,10 @@ function refreshToken() {
     });
 };
 
-var searchPetObj = {
-    type: 'cat',
-    breed: '',
-    color: '',
-    gender: 'male',
-    location: {
-        city: '',
-        state: 'KS',
-        zip: ''
-    }
-};
 // This function will check the user entries against the result set obtained in the ajax call
 function isConditionTrue(userParam,resultVal){
-    log('userParam',userParam.toUpperCase());
-    log('resultVal',resultVal.toUpperCase());
+    // log('userParam',userParam.toUpperCase());
+    // log('resultVal',resultVal.toUpperCase());
     if(userParam!=''){
         if(userParam.toUpperCase()===resultVal.toUpperCase()){
             userParam='';
@@ -256,6 +247,8 @@ function search(searchPetObj) {
     var queryURL = "https://cors-anywhere.herokuapp.com/https://api.petfinder.com/v2/animals";
     // add parameteres to the queryURL
     queryURL = queryURL + '?';
+    // Add more results per page
+    queryURL = queryURL + 'pagination.count_per_page=' + 100;
     // Add type of animal
     queryURL = queryURL + 'type=' + searchPetObj.type;
 
@@ -301,7 +294,7 @@ function search(searchPetObj) {
                                     var divH5 = $('<h5 class="card-title">' + result[index].name + '</h5>');
                                     divH5.css('width','100%','text-align','center');
                                     var petImage = $("<img></img>");
-                                    petImage.attr('src', result[index].photos[0].small);
+                                    petImage.attr({src: result[index].photos[0].small});
                                     petImage.css('width','100%');
                                     var aTag = $('<a href="' + result[index].url + '" class="btn btn-primary">More about me</a>');
                                     aTag.css('width','100%','text-align','center');
@@ -337,8 +330,67 @@ function search(searchPetObj) {
         }
     });
 }
+function searchClickFn(){
 
-search(searchPetObj);
+    var ubreed = $("#animal-breed").val().trim();
+    if(ubreed.indexOf('..')){
+        ubreed = '';
+    } 
+    var uState = $("#dropdown-state").val().trim();
+    if(uState.indexOf('..')){
+        uState = '';
+    }
+    var uCity=$("#dropdown-city").val().trim();
+    if(uCity.indexOf('..')){
+        uCity = '';
+    }
+    
+    searchPetObj = {
+        type: $("#animal-type-select").val().trim(),
+        breed: ubreed,
+        color: '',
+        gender: '',
+        location: {
+            city: uCity,
+            state: uState,
+            zip: $("#input-zipcode").val().trim()
+        }
+    };
+
+    search(searchPetObj);
+}
+
+$("button.btn-info").on("click", function (e) {
+    e.preventDefault();
+    var ubreed = $("#animal-breed").val().trim();
+    if(ubreed.indexOf('..')){
+        ubreed = '';
+    } 
+    var uState = $("#dropdown-state").val().trim();
+    if(uState.indexOf('..')){
+        uState = '';
+    }
+    var uCity=$("#dropdown-city").val().trim();
+    if(uCity.indexOf('..')){
+        uCity = '';
+    }
+    
+    searchPetObj = {
+        type: $("#animal-type-select").val().trim(),
+        breed: ubreed,
+        color: '',
+        gender: '',
+        location: {
+            city: uCity,
+            state: uState,
+            zip: $("#input-zipcode").val().trim()
+        }
+    };
+
+    search(searchPetObj);
+
+});
+
 
 // On click function to pull city names based on state
 $(document).on("click", "#dropdown-state", function () {
