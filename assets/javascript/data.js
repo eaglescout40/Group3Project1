@@ -15,6 +15,8 @@ var client_secret = "JDx7nY5jRhNXP0UPmG7YbwE2OSqlOvSrB0urVCab"; //Secret
 var accessToken = "";
 var refreshTokenAttempted = false;
 
+var foundPet = false;
+var noOfResults = 0;
 
 // Create a firebase object
 var firebaseConfig = {
@@ -29,11 +31,11 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 // create a database ref variable
-var database = firebase.database();  
-
+var database = firebase.database();
 // temporary code to create initial data
 var usersObjArray =
     [
@@ -74,37 +76,72 @@ var usersObjArray =
                     }
                 ]
 
-    
-        },    
+
+        },
         {
-            name:'PQR',  
-            address:'456 street, Chicago, IL',
-            email:'a@b.com',
-            petPreference : {
-                type:'cat',breed:'Tabby',gender:'female',color:'Orange',altered:'Yes'
+            name: 'PQR',
+            address: '456 street, Chicago, IL',
+            email: 'a@b.com',
+            petPreference: {
+                type: 'cat', breed: 'Tabby', gender: 'female', color: 'Orange', altered: 'Yes'
             }
         }
+
     ];
 
 //   log('after creating array');
 //   log('name: '+usersObjArray[0].name)
-  
-function addRow(pUsersObjArray){
+
+function addRow(pUsersObjArray) {
     //log('in addRow');
     // open a loop on the objects array
-    for(var i=0;i<pUsersObjArray.length;i++){
+    for (var i = 0; i < pUsersObjArray.length; i++) {
         //log('current index : '+i);
         //log('address: '+pUsersObjArray[i].address);
         // add a row to the database
-        database.ref('/UserID-'+i).set(
+        database.ref('/UserID-' + i).set(
             pUsersObjArray[i]
         );
         //log('after database set');
     }
+
+    // Add search history to the user
+    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
 };
 
-// Add search history to the user
-// database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+// ----- Added from old branch
+// temporary searchHistory object    
+var searchHistoryObj = {
+    type: 'cat',
+    breed: 'bombay cat',
+    gender: 'male',
+    color: 'black',
+    altered: 'Yes',
+    location: {
+        zip: '30022',
+        city: 'Alpharetta',
+        state: 'GA'
+    }
+};
+// Function to add a search history
+function addHistory(pUserID) {
+    var cnt = 0;
+    database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
+        //loop and find the next element of array to use
+        if (data.val() != undefined) {
+            var child = data.val()[cnt];
+            if (child != undefined) {
+                while (child != undefined) {
+                    cnt++
+                    child = data.val()[cnt];
+                }
+            }
+        }
+    });
+    // Add search history to the user
+    database.ref(pUserID + '/searchHistory/' + cnt).set(searchHistoryObj);
+}
+// --- end of old branch
 
 // temporary call to addHistory
 // addHistory('UserID-0');
@@ -112,8 +149,7 @@ function addRow(pUsersObjArray){
 
 //function to populate search-history element for the userID provided 
 function populateSearchHistory(pUserID) {
-    log('in populateSearchHistory userID : ' + pUserID);
-
+    //log('in populateSearchHistory userID : ' + pUserID);
     database.ref('/' + pUserID + '/searchHistory/').on("value", function (data) {
 
         // get all the child elements
@@ -158,9 +194,7 @@ populateSearchHistory('UserID-1');
 
 function refreshToken() {
     refreshTokenAttempted = true;
-
-    log('in refreshToken');
-
+    //log('in refreshToken');
     $.ajax({
         url: `https://api.petfinder.com/v2/oauth2/token`,
         method: "POST",
@@ -169,13 +203,11 @@ function refreshToken() {
             "client_id": "yzqDLCfr7QRSBvCjfZglD8857s37RlkBOYBOgfurRqSksECjcb",
             "client_secret": "dBIHXQItrvUgQcqFNhxtg5juvsDfreot1EB3mvqY"
         }
-    })
-    
-    .then(function (response) {
-        log('in ajax call');
-        log('in refereshToken response : ', response);
+    }).then(function (response) {
+        //log('in ajax call');
+        //log('in refereshToken response : ', response);
         accessToken = response.access_token;
-        console.log("accessToken after set from refreshToken: ", accessToken);
+        //log("accessToken after set from refreshToken: ", accessToken);
         search(searchPetObj);
 
     })
@@ -186,42 +218,47 @@ function refreshToken() {
 };
 
 var searchPetObj = {
-    type: 'dog',
-    breed: 'boxer',
-    color: 'brown',
-    gender: 'female',
+    type: 'cat',
+    breed: '',
+    color: '',
+    gender: 'male',
     location: {
-        city: 'Atlanta',
-        state: 'GA',
-        zip: '30001'
+        city: '',
+        state: 'KS',
+        zip: ''
     }
 };
+// This function will check the user entries against the result set obtained in the ajax call
+function isConditionTrue(userParam,resultVal){
+    log('userParam',userParam.toUpperCase());
+    log('resultVal',resultVal.toUpperCase());
+    if(userParam!=''){
+        if(userParam.toUpperCase()===resultVal.toUpperCase()){
+            userParam='';
+            resultVal='';
+            return true;
+        }
+    }else{
+        log('userParam is null')    
+        userParam='';
+            resultVal='';
+            return true;
+    }
+    userParam='';
+            resultVal='';
+            return false; 
+} // end of isConditionTrue
+
 function search(searchPetObj) {
-    log(searchPetObj);
-    //  refreshToken();
+    log('searchPetObj ', searchPetObj);
+
     // set up a a query variable
     var queryURL = "https://cors-anywhere.herokuapp.com/https://api.petfinder.com/v2/animals";
     // add parameteres to the queryURL
     queryURL = queryURL + '?';
     // Add type of animal
     queryURL = queryURL + 'type=' + searchPetObj.type;
-    // // Add breed
-     queryURL = queryURL + '&breeds.primary=' + searchPetObj.breed;
-    // // Add location
-    // //// Add city
-    // queryURL = queryURL + '&contact.address.city=' + searchPetObj.location.city;
-    // //// Add state
-    // queryURL = queryURL + '&contact.address.state=' + searchPetObj.location.state;
-    // //// Add zipcode
-    // queryURL = queryURL + '&contact.address.postcode=' + searchPetObj.location.zip;
 
-
-
-
-
-
-// On click function to pull city names based on state
-    log('in search')
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -232,25 +269,68 @@ function search(searchPetObj) {
     
     .then(function (response) {
         log('in ajax - search');
-        log(response);
+        //log('in search ajax animals ',result);
         // loop through animals array to add more filters 
-        $(response).each(function(animal){
+        var result = response.animals;
+        log('result:', result);
+        $(result).each(function (index) {
+            //log('Breed ', result[index].breeds.primary.toUpperCase());
+            //log('parameter breed ', searchPetObj.breed.toUpperCase());
+            foundPet = false;
             // Check the breed
-            // if(animal.breeds.primary === searchPetObj.breed){
-            //     // Check gender
-            //     if(animals.gender==='female'){
-            //         // Check if the primary color is not null
-            //         if(animal.colors.primary!=''){
-                        log('selected animal');
-            //         }
-            //     }
-            // }
+            if(isConditionTrue(searchPetObj.breed , result[index].breeds.primary)){
+                log('now check the color');
+                log('sending',searchPetObj.color, ' and ',result[index].colors.primary);
+                if(isConditionTrue(searchPetObj.color , result[index].colors.primary)){
+                    log('now check the gender');
+                    if(isConditionTrue(searchPetObj.gender , result[index].gender)){
+                        log('check location');
+                        log('Check state');
+                        if(isConditionTrue(searchPetObj.location.state , result[index].contact.address.state)){
+                            log('Check city');
+                            if(isConditionTrue(searchPetObj.location.city , result[index].contact.address.city)){
+                                //check zip
+                                if(isConditionTrue(searchPetObj.location.zip , result[index].contact.address.postcode)){
+                                    log('found the dog');
+                                    foundPet = true;
+                                    noOfResults++;
+                                    // add image to a card
+                                    var divCol3 = $('<div class = "col-sm-3" ></div>');
+                                    var divCard = $('<div class = "card"></div>');
+                                    var divCardBody = $('<div class="card-body"></div>');
+                                    var divH5 = $('<h5 class="card-title">' + result[index].name + '</h5>');
+                                    divH5.css('width','100%','text-align','center');
+                                    var petImage = $("<img></img>");
+                                    petImage.attr('src', result[index].photos[0].small);
+                                    petImage.css('width','100%');
+                                    var aTag = $('<a href="' + result[index].url + '" class="btn btn-primary">More about me</a>');
+                                    aTag.css('width','100%','text-align','center');
+                                    divCardBody.append(divH5);
+                                    divCardBody.append(petImage);
+                                    divCardBody.append(aTag);
+                                    divCard.append(divCardBody);
+                                    divCol3.append(divCard);
+                                    $('.petImageHolder').append(divCol3);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         })
-        
-    })
-    
-    .catch(function (err) {
-        console.log("ERROR! ", err);
+        if (!foundPet) {
+            log('did not find the pet');
+            log('noOfResults',noOfResults);
+            
+            if(noOfResults<6 && noOfResults>=0){
+                log('Recursive search');
+                //search(searchPetObj);
+            }
+            
+        }
+
+    }).catch(function (err) {
+        //console.log("ERROR! ", err);
         // call refreshtoken if the token is expired or asked for the first time
         if (err.responseJSON.status === 401 && !refreshTokenAttempted) {
             refreshToken();
@@ -261,28 +341,27 @@ function search(searchPetObj) {
 search(searchPetObj);
 
 // On click function to pull city names based on state
-$(document).on("click", "#dropdown-state", function(){
+$(document).on("click", "#dropdown-state", function () {
 
     // Ajax pull for json file
     $.ajax({
         type: "GET",
-        url:"./assets/media/csvjson.json",
-        })
-        .then((resp)=>{
-            console.log(resp);
+        url: "./assets/media/csvjson.json",
+    }).then((resp) => {
+        console.log(resp);
 
-            // Delete child elements of city dropdown
-            $("#dropdown-city").empty();
+        // Delete child elements of city dropdown
+        $("#dropdown-city").empty();
 
-            // Add placeholder to city dropdown
-            $("#dropdown-city").append("<option>Choose...</option>");
+        // Add placeholder to city dropdown
+        $("#dropdown-city").append("<option>Choose...</option>");
 
-            // capture value of state value
-            var stateVal = $("#dropdown-state").val();
-            console.log(stateVal);
+        // capture value of state value
+        var stateVal = $("#dropdown-state").val();
+        console.log(stateVal);
 
-            $.each(resp, function(index, value) {
-                if( resp[index].state_id === stateVal ){
+        $.each(resp, function (index, value) {
+            if (resp[index].state_id === stateVal) {
 
                     // Set variables to create new options for city
                     var cityDropdown = $("#dropdown-city");
