@@ -5,9 +5,9 @@ $("button.btn-info").on("click", function(e) {
     var animal = $("#animal-type-select")
       .val()
       .trim();
-    var animalBreed = $("#animal-breed")
-    .val()
-    .trim();
+    //var animalBreed = $("#animal-breed")
+    //.val()
+    //.trim();
     var state = $("#dropdown-state")
       .val()
       .trim();
@@ -19,24 +19,36 @@ $("button.btn-info").on("click", function(e) {
       .trim();
   
     if (animal === "...") {
-      $(".frmErrors")
-        .text("The form is not complete")
-        .show();
-      //.show();
-    }
-    if (state === "Choose..." || city === "Choose..." || zip === " " ||animalBreed === "...") {
-      $(".frmErrors")
-        .text("The form is not complete")
-        .fadeIn().fadeOut(5000);
-      //console.log(state);
-      //console.log('hi')
-    }
+       $(".frmErrors")
+         .text("Please select a type of animal")
+         .fadeIn().fadeOut(5000);
+       //.show();
+     } else {
+         (state === "Choose..." && city === "Choose..." && zip === " " ); {
+             $(".frmErrors")
+               .text("Please select at least one location criterion (state, city, zip)")
+               .fadeIn().fadeOut(5000);
+
+     }
+ }
+     // if (state === "Choose..." && city === "Choose..." && zip === " " && animalBreed === "...") {
+     //    $(".frmErrors")
+     //      .text("The form is not complete")
+     //      .fadeIn().fadeOut(5000);
+     //    //console.log(state);
+     //    //console.log('hi')
+     //  }
     
-        if (isNaN(zip)) {
-          return 'Not a Number!';
-        }
-        //return x * 1000;
-      
-      
-       
+    if(zip != " " ) {
+         if(zip != " " ) {if (isNaN(zip)) {
+                 //return 'Not a Number!';
+                 $(".frmErrors")
+                 .text('Not a Number!')
+                 .fadeIn().fadeOut(5000);
+               }
+         }
+     }  
+
+
+         
   });
