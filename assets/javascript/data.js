@@ -591,3 +591,9 @@ $(document).on("click", "#animal-type-select", function(){
 
     }
 });
+
+
+// Modal activation code
+$('#signin-modal').on('shown.bs.modal', function () {
+    $('#signin-button').trigger('focus')
+})
