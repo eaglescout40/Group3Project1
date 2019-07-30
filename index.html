@@ -41,66 +41,92 @@
 
                 <!-- Link 1 -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <!-- Link 2 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="https://www.mypetneedsthat.com/best-pet-adoption-websites/">Link</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Slideshow container -->
+    <!-- MAdams -- Slideshow container -->
 <div class="slideshow-container">
 
     <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 3</div>
+    <div class="mySlides">
+      <!--<div class="numbertext">1 / 3</div>-->
       <img src="img1.jpg" style="width:100%">
-      <div class="text">Caption Text</div>
+      <!--<div class="text">Caption Text</div>-->
     </div>
   
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 3</div>
-      <img src="img2.jpg" style="width:100%">
-      <div class="text">Caption Two</div>
+    <div class="mySlides">
+      <!--<div class="numbertext">1 / 3</div>-->
+      <img src="img4.jpg" style="width:100%">
+      <!--<div class="text">Caption Text</div>-->
     </div>
-  
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 3</div>
-      <img src="img3.jpg" style="width:100%">
-      <div class="text">Caption Three</div>
+
+    <div class="mySlides">
+        <!--<div class="numbertext">1 / 3</div>-->
+        <img src="img2.jpg" style="width:100%">
+        <!--<div class="text">Caption Text</div>-->
     </div>
+
+    <div class="mySlides">
+        <!--<div class="numbertext">1 / 3</div>-->
+        <img src="img5.jpg" style="width:100%">
+        <!--<div class="text">Caption Text</div>-->
+      </div>
+    
+      <div class="mySlides">
+        <!--<div class="numbertext">1 / 3</div>-->
+        <img src="img3.jpg" style="width:100%">
+        <!--<div class="text">Caption Text</div>-->
+      </div>
   
-    <!-- Next and previous buttons -->
+      <div class="mySlides">
+        <!--<div class="numbertext">1 / 3</div>-->
+        <img src="img6.jpg" style="width:100%">
+        <!--<div class="text">Caption Text</div>-->
+      </div>
+  
+    <!-- Next and previous buttons -->s
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
      <!-- The dots/circles -->
     <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span> 
-        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span> 
         <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(6)"></span> 
       </div>
 
   </div>
 
-        <!-- Add animal info/facts here -->
+    <!-- MAdams -- Add animal info/facts here -->
 
         <div class="flip-box">
             <div class="flip-box-inner">
               <div class="flip-box-front">
-                <h2>Front Side</h2>
+                <p>Rare black rhino dies on flight from UK to Africa, where he was due to be released into wild.</p>
+                <p>Black rhinos are critically endangered because of poaching and loss of habitat.</p>
+                <p>Zambezi, a 17-year-old male, was born and raised in animal reserves controlled by the Aspinall Foundation but was on his way to Tanzania as part of ongoing conservation efforts to boost the critically endangered population when he died.</p>
               </div>
               <div class="flip-box-back">
-                <h2>Back Side</h2>
+                <p>Fathers help offspring have bigger brains, study of animals shows.</p>
+                <p>A study of almost 500 mammalian species has revealed those in which both parents care for their offspring help provide the conditions in which bigger brains - and therefore greater intelligence - can evolve.</p>
+                <p>The larger the brain is in relation to body size, the more intelligent a living organism is, generally speaking. However, it comes at a price - maintaining a larger brain requires greater energy and therefore more food.</p>
+                <p>The females of many large-brained animal species cannot bear the energetic costs of rearing offspring on their own - they are reliant on additional help.</p>
               </div>
             </div>
           </div>
           
-    
+    <br>
     <!-- Add an accordion with the search fields/options -->
     <div class="container mb-4">
     <div class="accordion border-bottom rounded" id="accordion-search">
@@ -258,23 +284,29 @@
     </div>
     </div>
 
-    <!-- Add Google Maps widget here. On right of search results -->
-    //<!-- ??? -->
-        //<p>
-            //This is the area for the Goolgle Maps Plugin\Widget.
-            //<div id="result-list">
-                //Search result list
-            //</div>
-        //</p>
-<div>       
+
+    <!-- MAdams -- Google Maps widget here. On right of search results -->
+    <!--<div id="googleMap" style="width:100%;height:400px;"></div>
+
+<script>
+function myMap() {
+var mapProp= {
+  center:new google.maps.LatLng(33.9498, 83.3734),
+  zoom:5,
+};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>-->
     <!-- Map feature ??? -->
-    <div class="container">
+    <!--<div class="google-map">
         <div id="map">
             Map
-            </div>
+            </div>-->
             <!-- Search result list -->
         
-        <div id="map"></div>
+        <!--<div id="map"></div>
         <script src="js/google-map.js">
     
             function init() {
@@ -311,7 +343,7 @@
                     document.body.appendChild(script);
                 }
 
-            window.onload = loadScript;
+            window.onload = loadScript;  -->
 
         
     
@@ -321,7 +353,7 @@
 </div>
 
     <!-- Pet Finder iframe - TO BE REMOVED -->
-    <iframe style="width: 500px; height: 600px; margin: 0;" src="https://fpm.petfinder.com/petlist/petlist.cgi?shelter=ALL_GA&status=A&age=&limit=25&offset=0&animal=&title=&style=8&ref=1JWHb9c3FxbV9g_" width="500px" height="600px" hspace="0" vspace="0"  frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" bordercolor="#000000"></iframe>
+    <!--<iframe style="width: 500px; height: 600px; margin: 0;" src="https://fpm.petfinder.com/petlist/petlist.cgi?shelter=ALL_GA&status=A&age=&limit=25&offset=0&animal=&title=&style=8&ref=1JWHb9c3FxbV9g_" width="500px" height="600px" hspace="0" vspace="0"  frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" bordercolor="#000000"></iframe>-->
          
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>

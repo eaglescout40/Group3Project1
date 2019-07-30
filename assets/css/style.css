@@ -1,9 +1,4 @@
 
-/* This is the CSS for the Search banner */
-.accordion {
-    border: 1px solid black;
-}
-
 /* M.Adams -- This is the CSS for the Comic Slide Container */
 /* M.Adams -- SLIDESHOW */
 * {box-sizing:border-box}
@@ -11,9 +6,9 @@
 /* Slideshow container */
 .slideshow-container {
     float: left;
-    background-color: transparent;
+    background-color: lightgoldenrodyellow;
     width: 50%;
-    height: 400px;
+    height: 300px;
     border: 1px solid black;
     max-width: 50%;
     position: relative;
@@ -22,7 +17,7 @@
 
 /* Hide the images by default */
 .mySlides {
-  display: visible;
+  display: none;
 }
 
 /* Next & previous buttons */
@@ -81,7 +76,7 @@
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 5s ease;
+  /*transition: background-color 5s ease;*/
 }
 
 .active, .dot:hover {
@@ -109,10 +104,12 @@
 /* M.Adams -- NEWS CONTAINER CSS*/
 /* M.Adams -- The NEWS flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-box {
+    font: courier;
+    font-size: 14pt;
     float: right;
     background-color: transparent;
     width: 50%;
-    height: 200px;
+    height: 300px;
     border: 1px solid black;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
@@ -153,6 +150,14 @@
     transform: rotateY(180deg);
   } 
     
+/* This is the CSS for the Search banner */
+.container mb-4 {
+
+
+}
+.accordion {
+  border: 1px solid black;
+}
 
   /* M.Adams -- This is the CSS for the Google Maps Container */
   /* M.Adams -- GOOGLE MAPS */
