@@ -31,7 +31,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
 
         <!-- Logo -->
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="index.html"><img id="nav-pic" src="assets/images/pawprint.jpg" alt="Paw Print"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,13 +41,13 @@
             <ul class="navbar-nav mr-auto">
 
                 <!-- Link 1 -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
 
                 <!-- Link 2 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="user.html">Account <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -57,36 +57,28 @@
 
         <div class="row col">
 
-            <!-- Profile image -->
-            <div id="profile-image" class="col-md-4">
-                <img src="" alt="Placeholder Profile Image">
-            </div>
-
-            <!-- Separation -->
-            <div class="col-md-2"></div>
-
             <!-- User info -->
-            <div id="user-info" class="col-md-6">
+            <div id="user-info" class="col-md">
                 <table class="table table-striped">
 
                     <tbody>
                         <!-- Name -->
                         <tr>
                             <th scope="row">Name: </th>
-                            <td>Stinky</td>
+                            <td id="user-name"></td>
                         </tr>
 
                         <!-- Email -->
                         <tr>
                             <th scope="row">Email:</th>
-                            <td>stinky.butt@eww.com</td>
+                            <td id="user-email"></td>
                             
                         </tr>
 
                         <!-- Favorite animals -->
                         <tr>
                             <th scope="row">Favorite Pet:</th>
-                            <td>ALL!!</td>
+                            <td id="pet-preference"></td>
                         </tr>
 
                     </tbody>
@@ -94,91 +86,6 @@
                 </table>
             </div>
 
-        </div>
-
-        <!-- Current Pet info -->
-        <div id="pet-info" class="row col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Pet name: </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Breed: </h6>
-
-                    <p class="card-text">
-                        Color: 
-                    </p>
-
-                    <p class="card-text">
-                        Gender: 
-                    </p>
-
-                    <p class="card-text">
-                        Type: 
-                    </p>
-
-                    <p class="card-text">
-                        Altered: 
-                    </p>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Add pet info form -->
-        <div id="add-pet" class="row col-md">
-            <form class="col">
-
-                <!-- User pet name -->
-                <div class="form-group">
-                <label for="user-pet-name">Pet Name:</label>
-                <input type="email" class="form-control" id="user-pet-name">
-                </div>
-
-                <!-- User pet breed -->
-                <div class="form-group">
-                <label for="exampleInputPassword1">Breed:</label>
-                <input type="password" class="form-control" id="user-pet-breed">
-                </div>
-
-                <!-- User pet color -->
-                <div class="form-group">
-                <label for="exampleInputPassword1">Color:</label>
-                <input type="password" class="form-control" id="user-pet-color">
-                </div>
-
-                <!-- User pet gender -->
-                <div class="form-group">
-                <label for="exampleInputPassword1">Gender:</label>
-                <input type="password" class="form-control" id="user-pet-gender">
-                </div>
-
-                <!-- User pet type -->
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">Pet Type:</label>
-                    <select class="form-control" id="user-pet-type">
-                        <option>Dog</option>
-                        <option>Cat</option>
-                        <option>Hampster</option>
-                        <option>Snake</option>
-                        <option>Other...</option>
-                    </select>
-                </div>
-
-                <!-- User pet altered state -->
-                <div class="form-group">
-                    <label for="">Altered?:</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-yes" value="true">
-                        <label class="form-check-label" for="fixed-yes">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fixed-no" value="false">
-                        <label class="form-check-label" for="fixed-no">No</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-            </form>
         </div>
         
     </div>
